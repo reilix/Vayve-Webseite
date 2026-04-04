@@ -1,6 +1,6 @@
 services:
   web:
-    image: ghcr.io/reilix/vayve-webseite:latest
+    build: .
     ports:
       - "3000:3000"
     environment:
