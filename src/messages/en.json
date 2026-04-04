@@ -1,0 +1,224 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "gallery": "Gallery",
+    "contact": "Contact"
+  },
+  "home": {
+    "hero": {
+      "title": "Events that move.",
+      "subtitle": "We create unforgettable experiences — from sunrise silent discos to tailor-made weddings and corporate events.",
+      "cta_primary": "Our Events",
+      "cta_secondary": "Get in Touch"
+    },
+    "marquee": {
+      "items": "SUNRISE DISCO · SILENT DISCO RUN · EVENT PLANNING · WEDDINGS · CORPORATE EVENTS · FESTIVALS ·"
+    },
+    "services": {
+      "eyebrow": "What we do",
+      "title": "Experiences that stay with you",
+      "subtitle": "From our own event formats to custom event planning — we bring energy to every project.",
+      "own_events": "Own Events",
+      "own_events_desc": "Sunrise Silent Disco Run, Sunrise Beach Disco and more — our own formats move people.",
+      "planning": "Event Planning",
+      "planning_desc": "Weddings, corporate events, private celebrations — we plan and create your perfect event.",
+      "creative": "Creative Concepts",
+      "creative_desc": "Unique ideas and concepts that make your event stand out from the crowd.",
+      "cta": "Discover all services"
+    },
+    "events": {
+      "eyebrow": "Our Events",
+      "title": "Experiences you can feel",
+      "silent_disco": {
+        "title": "Sunrise Silent Disco Run",
+        "description": "Running at sunrise, connected through music — everyone in their own rhythm. A shared experience that unites energy, movement and music.",
+        "cta": "Learn more"
+      },
+      "beach_disco": {
+        "title": "Sunrise Beach Disco",
+        "description": "Dancing on the beach as the sun rises. Barefoot in the sand, surrounded by beats and good vibes — the perfect start to the day.",
+        "cta": "Learn more"
+      }
+    },
+    "stats": {
+      "events": "Events",
+      "attendees": "Guests",
+      "cities": "Cities",
+      "satisfaction": "Satisfaction"
+    },
+    "testimonials": {
+      "eyebrow": "Voices",
+      "title": "What others say"
+    },
+    "cta": {
+      "title": "Ready for your event?",
+      "subtitle": "Let's create something unforgettable together.",
+      "button": "Inquire now"
+    }
+  },
+  "about": {
+    "hero": {
+      "title": "Who we are",
+      "subtitle": "We are Vayve — an event agency with passion for unforgettable moments."
+    },
+    "mission": {
+      "eyebrow": "Our Mission",
+      "title": "Creating events that move people and moments that last.",
+      "text": "Vayve stands for energy, creativity and passion. We believe events can be more than just occasions — they can connect, inspire and move people.",
+      "vision_title": "Our Vision",
+      "vision_text": "The go-to destination for unforgettable event experiences."
+    },
+    "values": {
+      "eyebrow": "Our Values",
+      "title": "What drives us",
+      "passion": {
+        "title": "Passion",
+        "description": "We are passionate about what we do. Every event is a matter of the heart."
+      },
+      "creativity": {
+        "title": "Creativity",
+        "description": "Every event is unique. We think differently, boldly and surprisingly."
+      },
+      "reliability": {
+        "title": "Reliability",
+        "description": "We deliver on our promises. You can count on us."
+      },
+      "energy": {
+        "title": "Energy",
+        "description": "We bring momentum to every project. Standing still is not an option."
+      }
+    },
+    "team": {
+      "eyebrow": "The Team",
+      "title": "The people behind Vayve"
+    }
+  },
+  "services": {
+    "hero": {
+      "title": "What we do",
+      "subtitle": "From our own event formats to complete event planning — we bring your vision to life."
+    },
+    "own_events": {
+      "eyebrow": "Our Formats",
+      "title": "Events by Vayve",
+      "silent_disco": {
+        "title": "Sunrise Silent Disco Run",
+        "description": "A unique running event at sunrise. Every participant wears wireless headphones and runs to their own rhythm — connected through music, energy and the rising sun. An experience you have to feel.",
+        "features": ["Wireless headphones for everyone", "3 live DJ channels", "5-10km route", "After-run breakfast"]
+      },
+      "beach_disco": {
+        "title": "Sunrise Beach Disco",
+        "description": "Dancing on the beach, barefoot in the sand, as the sun rises over the horizon. DJs, good vibes and a community starting the day together. No alcohol, pure energy.",
+        "features": ["Live DJs from 5 AM", "Yoga warm-up session", "Healthy drinks & snacks", "Community vibes"]
+      }
+    },
+    "planning": {
+      "eyebrow": "Event Planning",
+      "title": "Your event, our expertise",
+      "weddings": {
+        "title": "Weddings",
+        "description": "Your most important day deserves perfect planning. From the venue to the last dance — we take care of every detail."
+      },
+      "corporate": {
+        "title": "Corporate Events",
+        "description": "Company celebrations, team building, product launches — professionally planned with that special Vayve touch."
+      },
+      "private": {
+        "title": "Private Celebrations",
+        "description": "Birthdays, anniversaries, special occasions — we turn your celebration into an unforgettable experience."
+      }
+    },
+    "process": {
+      "eyebrow": "Our Process",
+      "title": "How we work",
+      "steps": [
+        {
+          "title": "Consultation",
+          "description": "We listen, understand your vision and develop initial ideas."
+        },
+        {
+          "title": "Concept",
+          "description": "We create a tailor-made concept with all the details."
+        },
+        {
+          "title": "Planning",
+          "description": "From venues to catering — we coordinate all aspects."
+        },
+        {
+          "title": "Execution",
+          "description": "On event day, we're on site ensuring everything runs smoothly."
+        }
+      ]
+    }
+  },
+  "gallery": {
+    "hero": {
+      "title": "Gallery",
+      "subtitle": "Our events in pictures — moments that move."
+    },
+    "filters": {
+      "all": "All",
+      "silent_disco": "Silent Disco",
+      "beach": "Beach Events",
+      "corporate": "Corporate",
+      "weddings": "Weddings"
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Let's talk",
+      "subtitle": "Got an idea? We'll turn it into an experience."
+    },
+    "form": {
+      "name": "Name",
+      "name_placeholder": "Your name",
+      "email": "Email",
+      "email_placeholder": "your@email.com",
+      "subject": "Subject",
+      "subject_placeholder": "What's it about?",
+      "event_type": "Event Type",
+      "event_types": {
+        "default": "Please select",
+        "wedding": "Wedding",
+        "corporate": "Corporate Event",
+        "private": "Private Celebration",
+        "own_event": "Own Event Format",
+        "other": "Other"
+      },
+      "message": "Message",
+      "message_placeholder": "Tell us about your idea...",
+      "submit": "Send inquiry",
+      "success": "Inquiry sent!",
+      "success_text": "We'll get back to you within 24 hours."
+    },
+    "info": {
+      "title": "Contact Details",
+      "email_label": "Email",
+      "phone_label": "Phone",
+      "social_label": "Social Media",
+      "response_time": "Response time: Within 24h"
+    }
+  },
+  "footer": {
+    "tagline": "Events that move.",
+    "navigation": "Navigation",
+    "services": "Services",
+    "own_events": "Own Events",
+    "event_planning": "Event Planning",
+    "weddings": "Weddings",
+    "corporate": "Corporate Events",
+    "contact": "Contact",
+    "legal": "Legal",
+    "imprint": "Imprint",
+    "privacy": "Privacy Policy",
+    "copyright": "© {year} Vayve. All rights reserved."
+  },
+  "common": {
+    "read_more": "Learn more",
+    "get_in_touch": "Get in touch",
+    "back_to_top": "Back to top",
+    "loading": "Loading..."
+  }
+}
