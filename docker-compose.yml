@@ -1,9 +1,6 @@
 services:
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: vayve-webseite-web:latest
+    image: ghcr.io/reilix/vayve-webseite:latest
     ports:
       - "3000:3000"
     environment:
