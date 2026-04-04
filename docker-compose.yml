@@ -6,3 +6,9 @@ services:
     environment:
       - NODE_ENV=production
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.vayve.rule=Host(`vayve.de`) || Host(`www.vayve.de`)"
+      - "traefik.http.routers.vayve.entrypoints=websecure"
+      - "traefik.http.routers.vayve.tls.certresolver=letsencrypt"
+      - "traefik.http.services.vayve.loadbalancer.server.port=3000"
