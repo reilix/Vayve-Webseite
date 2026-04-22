@@ -33,7 +33,7 @@ export default async function ImpressumPage({
             <h2>Angaben gemäß § 5 TMG</h2>
 
             <p>
-              nios digital UG (haftungsbeschränkt)
+              Vayve UG (haftungsbeschränkt) i.Gr.
               <br />
               Haderslebener Str. 2
               <br />
@@ -41,7 +41,8 @@ export default async function ImpressumPage({
             </p>
 
             <p>
-              <strong>Vertreten durch:</strong> Felix Gudowius
+              <strong>Vertreten durch:</strong> Felix Gudowius, Nastasia
+              Grafmann
             </p>
 
             <h3>Kontakt</h3>
@@ -52,17 +53,15 @@ export default async function ImpressumPage({
 
             <h3>Registereintrag</h3>
             <p>
-              Eintragung im Handelsregister.
-              <br />
-              Registergericht: Amtsgericht Hamburg
-              <br />
-              Registernummer: HRB 186579
+              Die Eintragung im Handelsregister ist beantragt. Die Angaben zum
+              Registergericht und zur Registernummer werden nach Eintragung
+              ergänzt.
             </p>
 
             <h3>Umsatzsteuer</h3>
             <p>
-              Umsatzsteuer-Identifikationsnummer gemäß §27 a
-              Umsatzsteuergesetz: DE368264501
+              Die Umsatzsteuer-Identifikationsnummer gemäß §27 a
+              Umsatzsteuergesetz ist beantragt und wird nach Erteilung ergänzt.
             </p>
 
             <h2>Haftungsausschluss</h2>

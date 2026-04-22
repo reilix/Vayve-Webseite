@@ -1,7 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Headphones, Sun, Check } from "lucide-react";
+import { Check } from "lucide-react";
+import Image from "next/image";
 import Container from "@/components/layout/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ScrollReveal from "@/components/animation/ScrollReveal";
@@ -39,8 +40,14 @@ export default function OwnEventsDetail() {
           {/* Silent Disco Run */}
           <ScrollReveal>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-              <div className="aspect-[4/3] rounded-[16px] bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
-                <Headphones size={80} className="text-primary/30" />
+              <div className="aspect-[4/3] rounded-[16px] relative overflow-hidden">
+                <Image
+                  src="/images/events/event-crowd-phone.jpg"
+                  alt="Silent Disco Run – Crowd"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
               </div>
               <div>
                 <h3 className="text-2xl md:text-3xl font-heading font-bold text-dark mb-4">
@@ -84,8 +91,14 @@ export default function OwnEventsDetail() {
                   ))}
                 </ul>
               </div>
-              <div className="order-1 lg:order-2 aspect-[4/3] rounded-[16px] bg-gradient-to-br from-secondary/10 to-accent/10 flex items-center justify-center">
-                <Sun size={80} className="text-secondary/30" />
+              <div className="order-1 lg:order-2 aspect-[4/3] rounded-[16px] relative overflow-hidden">
+                <Image
+                  src="/images/events/event-crowd-aerial.jpg"
+                  alt="Beach Disco – Festival Atmosphere"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
               </div>
             </div>
           </ScrollReveal>
