@@ -8,7 +8,7 @@ interface GalleryFilterProps {
   onChange: (filter: string) => void;
 }
 
-const filters = ["all", "silent_disco", "beach", "corporate", "weddings"];
+const filters = ["all", "festivals", "silent_disco", "beach", "corporate", "weddings"];
 
 export default function GalleryFilter({ active, onChange }: GalleryFilterProps) {
   const t = useTranslations("gallery.filters");

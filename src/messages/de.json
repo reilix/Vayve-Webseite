@@ -160,6 +160,7 @@
     },
     "filters": {
       "all": "Alle",
+      "festivals": "Festivals",
       "silent_disco": "Silent Disco",
       "beach": "Strand Events",
       "corporate": "Corporate",
