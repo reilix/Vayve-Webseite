@@ -8,6 +8,12 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  experimental: {
+    serverActions: {
+      // Cover-Uploads (bis 8 MB) über Server Actions zulassen.
+      bodySizeLimit: "10mb",
+    },
+  },
 };
 
 export default withNextIntl(nextConfig);

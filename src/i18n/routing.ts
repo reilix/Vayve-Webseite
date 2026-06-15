@@ -5,11 +5,13 @@ export const routing = defineRouting({
   defaultLocale: "de",
   pathnames: {
     "/": "/",
+    "/tickets": "/tickets",
+    "/events": "/events",
+    "/events/[slug]": "/events/[slug]",
     "/ueber-uns": {
       de: "/ueber-uns",
       en: "/about",
     },
-    "/services": "/services",
     "/galerie": {
       de: "/galerie",
       en: "/gallery",
@@ -18,5 +20,7 @@ export const routing = defineRouting({
       de: "/kontakt",
       en: "/contact",
     },
+    "/impressum": "/impressum",
+    "/datenschutz": "/datenschutz",
   },
 });

@@ -1,12 +1,14 @@
-import { Space_Grotesk, Inter } from "next/font/google";
+import { Syne, Inter } from "next/font/google";
 
-export const spaceGrotesk = Space_Grotesk({
+/** Display / Headlines — charaktervolle Grotesk, passt zur Bubble-Brand */
+export const syne = Syne({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
-  weight: ["400", "500", "600", "700"],
+  variable: "--font-syne",
+  weight: ["600", "700", "800"],
   display: "swap",
 });
 
+/** Body / UI */
 export const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",

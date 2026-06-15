@@ -4,6 +4,7 @@ import { routing } from "@/i18n/routing";
 import { setRequestLocale } from "next-intl/server";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import FbclidCapture from "@/components/tracking/FbclidCapture";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -28,6 +29,7 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
+      <FbclidCapture />
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />

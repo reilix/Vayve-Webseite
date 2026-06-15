@@ -1,24 +1,19 @@
-import { setRequestLocale } from "next-intl/server";
-import ContactHero from "@/components/sections/contact/ContactHero";
-import ContactForm from "@/components/sections/contact/ContactForm";
-import ContactInfo from "@/components/sections/contact/ContactInfo";
+import { setRequestLocale, getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
+import { Mail } from "lucide-react";
+import { siteConfig } from "@/lib/constants";
 import Container from "@/components/layout/Container";
-import PageTransition from "@/components/animation/PageTransition";
-import ScrollReveal from "@/components/animation/ScrollReveal";
+import ContactForm from "@/components/sections/contact/ContactForm";
+import InstagramIcon from "@/components/brand/InstagramIcon";
 
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>;
-}) {
+}): Promise<Metadata> {
   const { locale } = await params;
-  return {
-    title: locale === "de" ? "Kontakt" : "Contact",
-    description:
-      locale === "de"
-        ? "Kontaktiere Vayve — wir freuen uns auf deine Ideen und Anfragen."
-        : "Contact Vayve — we look forward to your ideas and inquiries.",
-  };
+  const t = await getTranslations({ locale, namespace: "contact.hero" });
+  return { title: t("title"), description: t("subtitle") };
 }
 
 export default async function ContactPage({
@@ -28,26 +23,50 @@ export default async function ContactPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations("contact");
 
   return (
-    <PageTransition>
-      <ContactHero />
-      <section className="py-16 md:py-24 bg-background">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
-            <div className="lg:col-span-3">
-              <ScrollReveal direction="left">
-                <div className="bg-white rounded-[16px] p-6 md:p-8 shadow-[0_1px_3px_rgba(15,10,26,0.08)]">
-                  <ContactForm />
-                </div>
-              </ScrollReveal>
-            </div>
-            <div className="lg:col-span-2">
-              <ContactInfo />
-            </div>
-          </div>
+    <div className="pt-28 md:pt-36">
+      <section className="relative overflow-hidden pb-12">
+        <div className="glow-orb left-[-8%] top-[-10%] size-[34vw] bg-primary/30" />
+        <Container className="relative z-10 max-w-3xl">
+          <span className="font-display text-xs font-bold uppercase tracking-[0.25em] text-mint">
+            {t("hero.eyebrow")}
+          </span>
+          <h1 className="mt-3 font-display text-5xl md:text-7xl font-extrabold tracking-tight text-cream">
+            {t("hero.title")}
+          </h1>
+          <p className="mt-4 text-lg text-muted">{t("hero.subtitle")}</p>
         </Container>
       </section>
-    </PageTransition>
+
+      <Container className="grid grid-cols-1 gap-12 pb-24 lg:grid-cols-[1fr_320px]">
+        <div className="rounded-[22px] border border-white/10 bg-[#160c2c] p-8">
+          <ContactForm />
+        </div>
+
+        <aside className="space-y-4">
+          <h2 className="font-display text-sm font-bold uppercase tracking-wider text-muted">
+            {t("info.title")}
+          </h2>
+          <a
+            href={`mailto:${siteConfig.email}`}
+            className="flex items-center gap-3 rounded-[18px] border border-white/10 bg-[#1a0f33] px-5 py-4 text-cream hover:border-primary transition-colors"
+          >
+            <Mail className="size-5 text-primary" />
+            <span>{siteConfig.email}</span>
+          </a>
+          <a
+            href={siteConfig.social.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 rounded-[18px] border border-white/10 bg-[#1a0f33] px-5 py-4 text-cream hover:border-mint transition-colors"
+          >
+            <InstagramIcon className="size-5 text-mint" />
+            <span>@vayve.germany</span>
+          </a>
+        </aside>
+      </Container>
+    </div>
   );
 }

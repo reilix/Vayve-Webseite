@@ -1,115 +1,72 @@
 @import "tailwindcss";
 
-:root {
-  /* Primary - Electric Violet */
-  --color-primary-50: #F5F3FF;
-  --color-primary-100: #EDE9FE;
-  --color-primary-200: #DDD6FE;
-  --color-primary-300: #C4B5FD;
-  --color-primary-400: #A78BFA;
-  --color-primary-500: #8B5CF6;
-  --color-primary-600: #7C3AED;
-  --color-primary-700: #6D28D9;
-  --color-primary-800: #5B21B6;
-  --color-primary-900: #4C1D95;
+@theme {
+  /* === Flächen === */
+  --color-background: #150a28;
+  --color-base: #0c0518;
+  --color-surface: #20123b;
+  --color-surface-2: #2a1a4a;
+  --color-foreground: #fbf7ff;
+  --color-cream: #fbf7ff;
+  --color-muted: #b9a8d6;
+  --color-border: rgba(255, 255, 255, 0.1);
 
-  /* Secondary - Coral Orange */
-  --color-secondary-50: #FFF7ED;
-  --color-secondary-100: #FFEDD5;
-  --color-secondary-200: #FED7AA;
-  --color-secondary-300: #FDBA74;
-  --color-secondary-400: #FB923C;
-  --color-secondary-500: #FF6B35;
-  --color-secondary-600: #EA580C;
-  --color-secondary-700: #C2410C;
-  --color-secondary-800: #9A3412;
-  --color-secondary-900: #7C2D12;
+  /* === Brand (Logo-Welt) === */
+  --color-primary: #ec4899; /* Pink — Haupt-CTA */
+  --color-primary-dark: #db2777;
+  --color-violet: #6d28d9; /* Logo-Lila */
+  --color-violet-bright: #7c3aed;
+  --color-violet-400: #a78bfa;
+  --color-violet-light: #a78bfa;
+  --color-magenta: #c026a8;
+  --color-mint: #5eead4; /* Logo-Türkis */
+  --color-acid: #d8ff3e; /* Neon-Akzent */
 
-  /* Accent - Electric Cyan */
-  --color-accent-light: #22D3EE;
-  --color-accent-default: #06B6D4;
-  --color-accent-dark: #0891B2;
+  /* === Semantik === */
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-error: #fb7185;
 
-  /* Neutrals */
-  --color-background: #FAFAFA;
-  --color-surface: #FFFFFF;
-  --color-dark: #0F0A1A;
-  --color-text-primary: #0F0A1A;
-  --color-text-secondary: #6B7280;
-  --color-border: #E5E7EB;
-
-  /* Semantic */
-  --color-success: #22C55E;
-  --color-warning: #F59E0B;
-  --color-error: #EF4444;
-  --color-info: #06B6D4;
-
-  /* Shadows */
-  --shadow-subtle: 0 1px 3px rgba(15, 10, 26, 0.08);
-  --shadow-medium: 0 4px 12px rgba(15, 10, 26, 0.12);
-  --shadow-strong: 0 8px 24px rgba(15, 10, 26, 0.16);
-  --shadow-glow: 0 0 24px rgba(124, 58, 237, 0.3);
-}
-
-@theme inline {
-  /* Colors */
-  --color-primary: #7C3AED;
-  --color-primary-dark: #6D28D9;
-  --color-primary-light: #A78BFA;
-  --color-secondary: #FF6B35;
-  --color-secondary-dark: #EA580C;
-  --color-secondary-light: #FB923C;
-  --color-accent: #06B6D4;
-  --color-accent-dark: #0891B2;
-  --color-accent-light: #22D3EE;
-  --color-dark: #0F0A1A;
-  --color-surface: #FFFFFF;
-  --color-background: #FAFAFA;
-  --color-muted: #6B7280;
-  --color-border: #E5E7EB;
-  --color-success: #22C55E;
-  --color-warning: #F59E0B;
-  --color-error: #EF4444;
-
-  /* Fonts */
-  --font-heading: var(--font-space-grotesk), system-ui, sans-serif;
+  /* === Fonts === */
+  --font-display: var(--font-syne), system-ui, sans-serif;
   --font-body: var(--font-inter), system-ui, sans-serif;
 
-  /* Border Radius */
-  --radius-button: 12px;
-  --radius-card: 16px;
-  --radius-input: 12px;
-  --radius-modal: 20px;
-  --radius-pill: 9999px;
-  --radius-image: 12px;
+  /* === Radii === */
+  --radius-button: 9999px;
+  --radius-card: 22px;
+  --radius-input: 14px;
+  --radius-image: 18px;
 }
 
-/* Smooth scrolling */
+:root {
+  --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.35);
+  --shadow-glow-pink: 0 0 40px rgba(236, 72, 153, 0.45);
+  --shadow-glow-mint: 0 0 40px rgba(94, 234, 212, 0.35);
+  --shadow-glow-violet: 0 0 48px rgba(124, 58, 237, 0.45);
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background: var(--color-background);
-  color: var(--color-dark);
+  background: #150a28;
+  color: #fbf7ff;
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Selection */
 ::selection {
-  background-color: rgba(124, 58, 237, 0.2);
-  color: var(--color-dark);
+  background-color: var(--color-primary);
+  color: #fff;
 }
 
-/* Focus visible */
 :focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--color-mint);
   outline-offset: 2px;
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -121,7 +78,13 @@ body {
   }
 }
 
-/* Marquee animation */
+/* === Display-Typo === */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* === Marquee === */
 @keyframes marquee {
   0% {
     transform: translateX(0);
@@ -130,72 +93,104 @@ body {
     transform: translateX(-50%);
   }
 }
-
 .animate-marquee {
-  animation: marquee 25s linear infinite;
+  animation: marquee 28s linear infinite;
 }
 
-/* Prose styles for legal pages */
+/* === Film-Grain Overlay (auf .grain-Containern) === */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.12;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Subtiles globales Grain */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* === Glow-Orbs === */
+.glow-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* === Text-Gradient === */
+.text-gradient {
+  background: linear-gradient(
+    100deg,
+    var(--color-primary),
+    var(--color-violet-400) 55%,
+    var(--color-mint)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* === Prose (Recht) === */
 .prose-styles h2 {
-  font-family: var(--font-heading);
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--color-dark);
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--color-cream);
   margin-top: 2.5rem;
   margin-bottom: 1rem;
   line-height: 1.2;
 }
-
 .prose-styles h3 {
-  font-family: var(--font-heading);
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--color-dark);
-  margin-top: 2rem;
-  margin-bottom: 0.75rem;
-  line-height: 1.3;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-cream);
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
 }
-
-.prose-styles p {
-  color: #4B5563;
+.prose-styles p,
+.prose-styles li {
+  color: var(--color-muted);
   line-height: 1.7;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
 }
-
 .prose-styles a {
-  color: #7C3AED;
+  color: var(--color-mint);
   text-decoration: underline;
   text-underline-offset: 2px;
-  transition: color 0.2s;
 }
-
-.prose-styles a:hover {
-  color: #6D28D9;
-}
-
 .prose-styles strong {
-  color: var(--color-dark);
+  color: var(--color-cream);
   font-weight: 600;
 }
-
 .prose-styles h2:first-child {
   margin-top: 0;
 }
 
-/* Scrollbar styling */
+/* === Scrollbar === */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
-
 ::-webkit-scrollbar-track {
-  background: var(--color-background);
+  background: var(--color-base);
 }
-
 ::-webkit-scrollbar-thumb {
-  background: var(--color-primary-light);
-  border-radius: 4px;
+  background: var(--color-violet);
+  border-radius: 6px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-primary);
 }

@@ -3,32 +3,27 @@
 import { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu } from "lucide-react";
-import { useTranslations, useLocale } from "next-intl";
-import Link from "next/link";
-import { navLinks, siteConfig } from "@/lib/constants";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import { navLinks } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import Logo from "@/components/brand/Logo";
 import LanguageSwitcher from "./LanguageSwitcher";
 import MobileNav from "./MobileNav";
 import Container from "./Container";
-import Button from "@/components/ui/Button";
 
 export default function Header() {
   const t = useTranslations("nav");
-  const locale = useLocale();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    setScrolled(latest > 50);
+    setScrolled(latest > 40);
   });
 
   useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
@@ -40,24 +35,21 @@ export default function Header() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           scrolled
-            ? "bg-dark/90 backdrop-blur-lg shadow-[0_4px_12px_rgba(15,10,26,0.12)]"
-            : "bg-transparent"
+            ? "bg-[#100722]/85 backdrop-blur-lg border-b border-white/10"
+            : "bg-transparent",
         )}
       >
         <Container className="flex items-center justify-between h-16 md:h-20">
-          <Link
-            href={`/${locale}`}
-            className="text-2xl font-heading font-bold text-white hover:text-primary-light transition-colors"
-          >
-            {siteConfig.name}
+          <Link href="/" className="text-2xl md:text-3xl">
+            <Logo />
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.key}
-                href={`/${locale}${link.href === "/" ? "" : link.href}`}
-                className="text-sm font-heading font-medium text-white/70 hover:text-white transition-colors"
+                href={link.href}
+                className="text-sm font-display font-semibold text-cream/70 hover:text-cream transition-colors"
               >
                 {t(link.key)}
               </Link>
@@ -65,24 +57,21 @@ export default function Header() {
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
-            <LanguageSwitcher light />
-            <Button
-              variant="primary"
-              size="sm"
-              onClick={() =>
-                (window.location.href = `/${locale}/kontakt`)
-              }
+            <LanguageSwitcher />
+            <Link
+              href="/tickets"
+              className="rounded-full bg-primary px-5 py-2.5 text-sm font-display font-bold text-white hover:shadow-[var(--shadow-glow-pink)] transition-all"
             >
-              {t("contact")}
-            </Button>
+              {t("tickets")}
+            </Link>
           </div>
 
           <button
             onClick={() => setMobileOpen(true)}
-            className="md:hidden p-2 text-white/70 hover:text-white transition-colors cursor-pointer"
-            aria-label="Open menu"
+            className="md:hidden inline-flex size-11 items-center justify-center text-cream/80 hover:text-cream transition-colors cursor-pointer"
+            aria-label="Menü öffnen"
           >
-            <Menu size={24} />
+            <Menu size={26} />
           </button>
         </Container>
       </motion.header>

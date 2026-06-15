@@ -1,17 +1,15 @@
-"use client";
-
-import { useTranslations } from "next-intl";
 import InfiniteMarquee from "@/components/animation/InfiniteMarquee";
 
-export default function MarqueeStrip() {
-  const t = useTranslations("home.marquee");
+const WORDS =
+  "GOOD VIBE RAVES ✺ VAYVE:AIR ✺ VAYVE:RUN ✺ HARD HOUSE ✺ TRANCE ✺ BOUNCE ✺ HOUSE ✺";
 
+export default function MarqueeStrip() {
   return (
-    <div className="bg-dark border-y border-white/10 py-4 md:py-5">
+    <div className="relative border-y border-white/10 bg-primary py-4 md:py-5">
       <InfiniteMarquee
-        text={t("items")}
+        text={WORDS}
         speed={30}
-        textClassName="text-xl md:text-2xl font-heading font-bold text-white/80 tracking-wider"
+        textClassName="font-display text-2xl md:text-4xl font-extrabold uppercase tracking-tight text-white"
       />
     </div>
   );

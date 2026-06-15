@@ -1,22 +1,31 @@
 import type { Metadata } from "next";
-import { spaceGrotesk, inter } from "@/lib/fonts";
+import { syne, inter } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://vayve.de"),
   title: {
-    default: "Vayve — Events, die bewegen.",
-    template: "%s | Vayve",
+    default: "VAYVE — Good Vibe Raves",
+    template: "%s | VAYVE",
   },
   description:
-    "Vayve kreiert unvergessliche Event-Erlebnisse — von Sunrise Silent Discos bis hin zu maßgeschneiderten Hochzeiten und Corporate Events.",
+    "VAYVE — Good Vibe Raves. Elektronische Musik, beste Stimmung, gute Leute. Open Airs, Raves und mehr.",
   keywords: [
-    "Eventagentur",
-    "Silent Disco",
-    "Sunrise Disco",
-    "Eventplanung",
-    "Hochzeiten",
-    "Corporate Events",
+    "VAYVE",
+    "Good Vibe Raves",
+    "Rave",
+    "Open Air",
+    "elektronische Musik",
+    "Vayve:Air",
+    "Vayve:Run",
   ],
+  openGraph: {
+    title: "VAYVE — Good Vibe Raves",
+    description: "Elektronische Musik, beste Stimmung, gute Leute.",
+    url: "https://vayve.de",
+    siteName: "VAYVE",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -26,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      className={`${spaceGrotesk.variable} ${inter.variable} h-full`}
+      className={`${syne.variable} ${inter.variable} h-full`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col antialiased">{children}</body>

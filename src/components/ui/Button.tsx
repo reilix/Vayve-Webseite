@@ -10,16 +10,16 @@ type Size = "sm" | "md" | "lg";
 interface ButtonProps extends HTMLMotionProps<"button"> {
   variant?: Variant;
   size?: Size;
-  asChild?: boolean;
 }
 
 const variantStyles: Record<Variant, string> = {
   primary:
-    "bg-primary text-white hover:bg-primary-dark hover:shadow-[0_0_24px_rgba(124,58,237,0.3)]",
-  secondary: "bg-secondary text-white hover:bg-secondary-dark",
+    "bg-primary text-white hover:shadow-[var(--shadow-glow-pink)]",
+  secondary:
+    "bg-violet text-cream hover:shadow-[var(--shadow-glow-violet)]",
   outline:
-    "bg-transparent text-primary border-2 border-primary hover:bg-primary hover:text-white",
-  ghost: "bg-transparent text-muted hover:text-dark hover:bg-dark/5",
+    "bg-transparent text-cream border border-white/25 hover:border-primary hover:text-primary",
+  ghost: "bg-transparent text-muted hover:text-cream hover:bg-white/5",
 };
 
 const sizeStyles: Record<Size, string> = {
@@ -33,21 +33,21 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <motion.button
         ref={ref}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.97 }}
         transition={{ duration: 0.15 }}
         className={cn(
-          "inline-flex items-center justify-center gap-2 font-heading font-semibold rounded-[12px] cursor-pointer transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2",
+          "inline-flex items-center justify-center gap-2 font-display font-bold rounded-full cursor-pointer transition-all duration-200 focus-visible:outline-2 focus-visible:outline-mint focus-visible:outline-offset-2",
           variantStyles[variant],
           sizeStyles[size],
-          className
+          className,
         )}
         {...props}
       >
         {children}
       </motion.button>
     );
-  }
+  },
 );
 
 Button.displayName = "Button";

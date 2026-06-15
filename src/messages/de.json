@@ -1,224 +1,144 @@
 {
   "nav": {
-    "home": "Home",
+    "home": "Start",
+    "events": "Events",
     "about": "Über uns",
-    "services": "Services",
     "gallery": "Galerie",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "tickets": "Tickets"
+  },
+  "footer": {
+    "tagline": "Good Vibe Raves — elektronische Musik, beste Stimmung, gute Leute.",
+    "navigation": "Navigation",
+    "contact": "Kontakt",
+    "copyright": "© {year} VAYVE. Alle Rechte vorbehalten.",
+    "imprint": "Impressum",
+    "privacy": "Datenschutz"
   },
   "home": {
     "hero": {
-      "title": "Events, die bewegen.",
-      "subtitle": "Wir kreieren unvergessliche Erlebnisse — von Sunrise Silent Discos bis hin zu maßgeschneiderten Hochzeiten und Corporate Events.",
-      "cta_primary": "Unsere Events",
-      "cta_secondary": "Kontakt aufnehmen"
+      "eyebrow": "Good Vibe Raves",
+      "line1": "Gute Musik.",
+      "line2": "Gute Leute.",
+      "line3": "Gute Vibes.",
+      "subtitle": "VAYVE bringt die elektronische Szene zusammen — auf Open Airs, Raves und überall dazwischen.",
+      "ctaEvents": "Kommende Events",
+      "ctaTickets": "Tickets",
+      "scroll": "Scroll"
     },
-    "marquee": {
-      "items": "SUNRISE DISCO · SILENT DISCO RUN · EVENTPLANUNG · HOCHZEITEN · CORPORATE EVENTS · FESTIVALS ·"
+    "upcoming": {
+      "eyebrow": "Demnächst",
+      "title": "Kommende Events",
+      "viewAll": "Alle Events",
+      "empty": "Bald geht's weiter — folge uns auf Instagram."
     },
-    "services": {
-      "eyebrow": "Was wir machen",
-      "title": "Erlebnisse, die in Erinnerung bleiben",
-      "subtitle": "Von unseren eigenen Event-Formaten bis zur individuellen Eventplanung — wir bringen Energie in jedes Projekt.",
-      "own_events": "Eigene Events",
-      "own_events_desc": "Sunrise Silent Disco Run, Sunrise Disco am Strand und mehr — unsere eigenen Formate bewegen Menschen.",
-      "planning": "Eventplanung",
-      "planning_desc": "Hochzeiten, Corporate Events, private Feiern — wir planen und kreieren dein perfektes Event.",
-      "creative": "Kreativkonzepte",
-      "creative_desc": "Einzigartige Ideen und Konzepte, die dein Event von der Masse abheben.",
-      "cta": "Alle Services entdecken"
+    "vibe": {
+      "eyebrow": "Der Vibe",
+      "title": "Mehr als ein Rave",
+      "body": "Bei VAYVE geht's um das Gefühl, wenn der Beat einsetzt und alle gemeinsam abgehen. Wir schaffen Räume für elektronische Musik, in denen sich jede:r wohlfühlt und einfach feiern kann.",
+      "cta": "Lern uns kennen"
     },
-    "events": {
-      "eyebrow": "Unsere Events",
-      "title": "Erlebnisse, die du spüren kannst",
-      "silent_disco": {
-        "title": "Sunrise Silent Disco Run",
-        "description": "Laufen bei Sonnenaufgang, verbunden durch Musik — jeder in seinem eigenen Rhythmus. Ein gemeinsames Erlebnis, das Energie, Bewegung und Musik vereint.",
-        "cta": "Mehr erfahren"
-      },
-      "beach_disco": {
-        "title": "Sunrise Disco am Strand",
-        "description": "Tanzen am Strand, während die Sonne aufgeht. Barfuß im Sand, umgeben von Beats und guten Vibes — der perfekte Start in den Tag.",
-        "cta": "Mehr erfahren"
-      }
-    },
-    "stats": {
-      "events": "Events",
-      "attendees": "Gäste",
-      "cities": "Städte",
-      "satisfaction": "Zufriedenheit"
-    },
-    "testimonials": {
-      "eyebrow": "Stimmen",
-      "title": "Was andere sagen"
-    },
-    "cta": {
-      "title": "Bereit für dein Event?",
-      "subtitle": "Lass uns zusammen etwas Unvergessliches kreieren.",
-      "button": "Jetzt anfragen"
+    "instagram": {
+      "title": "Folge dem Vibe",
+      "body": "Alle Updates, Line-ups und Good Vibes zuerst auf Instagram.",
+      "cta": "@vayve.germany"
     }
+  },
+  "tickets": {
+    "hero": {
+      "eyebrow": "Tickets",
+      "title": "Sichere dir dein Ticket",
+      "subtitle": "Tickets für unsere Events — direkt hier im Shop."
+    },
+    "fallback": "Shop lädt nicht? Im neuen Tab öffnen"
+  },
+  "events": {
+    "hero": {
+      "eyebrow": "Events",
+      "title": "Alle Events",
+      "subtitle": "Open Airs, Raves und Specials von VAYVE."
+    },
+    "upcomingTitle": "Demnächst",
+    "pastTitle": "Vorbei",
+    "empty": "Aktuell sind keine Events geplant. Schau bald wieder vorbei."
+  },
+  "eventDetail": {
+    "back": "Alle Events",
+    "when": "Wann",
+    "doors": "Einlass",
+    "where": "Wo",
+    "lineup": "Line-up",
+    "genres": "Sound",
+    "price": "Eintritt",
+    "past": "Dieses Event ist vorbei.",
+    "moreEvents": "Weitere Events"
   },
   "about": {
     "hero": {
-      "title": "Wer wir sind",
-      "subtitle": "Wir sind Vayve — eine Eventagentur mit Leidenschaft für unvergessliche Momente."
+      "eyebrow": "Über uns",
+      "title": "Wir sind VAYVE",
+      "subtitle": "Eine Crew, die für elektronische Musik und gute Vibes lebt."
     },
-    "mission": {
-      "eyebrow": "Unsere Mission",
-      "title": "Events, die Menschen bewegen und Momente schaffen, die in Erinnerung bleiben.",
-      "text": "Vayve steht für Energie, Kreativität und Leidenschaft. Wir glauben daran, dass Events mehr sein können als nur Veranstaltungen — sie können Menschen verbinden, inspirieren und bewegen.",
-      "vision_title": "Unsere Vision",
-      "vision_text": "Die erste Adresse für unvergessliche Event-Erlebnisse."
+    "story": {
+      "title": "Warum wir das machen",
+      "body1": "VAYVE ist aus der Liebe zur elektronischen Szene entstanden. Wir wollten Events, auf denen die Musik im Mittelpunkt steht und die Stimmung von der ersten bis zur letzten Minute trägt.",
+      "body2": "Ob Open Air, Rave oder ein Lauf durch die Stadt mit DJ vorneweg — bei uns geht's immer um dasselbe: zusammenkommen, abtanzen und den Moment genießen."
     },
     "values": {
-      "eyebrow": "Unsere Werte",
-      "title": "Was uns antreibt",
-      "passion": {
-        "title": "Leidenschaft",
-        "description": "Wir brennen für das, was wir tun. Jedes Event ist eine Herzensangelegenheit."
+      "music": {
+        "title": "Die Musik",
+        "body": "Hard House, Trance, Bounce, House — wir holen die Sounds und Acts, die den Floor zum Kochen bringen."
       },
-      "creativity": {
-        "title": "Kreativität",
-        "description": "Jedes Event ist ein Unikat. Wir denken neu, anders und überraschend."
+      "people": {
+        "title": "Die Leute",
+        "body": "Offen, respektvoll, am Start. Bei VAYVE ist jede:r willkommen, der mit guter Energie kommt."
       },
-      "reliability": {
-        "title": "Zuverlässigkeit",
-        "description": "Wir halten, was wir versprechen. Auf uns kannst du dich verlassen."
-      },
-      "energy": {
-        "title": "Energie",
-        "description": "Wir bringen Bewegung in jedes Projekt. Stillstand gibt es bei uns nicht."
+      "vibes": {
+        "title": "Die Vibes",
+        "body": "Wir kümmern uns um Sound, Licht und das Drumherum, damit ihr euch einfach fallen lassen könnt."
       }
     },
-    "team": {
-      "eyebrow": "Das Team",
-      "title": "Die Menschen hinter Vayve"
-    }
-  },
-  "services": {
-    "hero": {
-      "title": "Was wir machen",
-      "subtitle": "Von unseren eigenen Event-Formaten bis zur kompletten Eventplanung — wir bringen deine Vision zum Leben."
-    },
-    "own_events": {
-      "eyebrow": "Unsere Formate",
-      "title": "Events by Vayve",
-      "silent_disco": {
-        "title": "Sunrise Silent Disco Run",
-        "description": "Ein einzigartiges Lauf-Event bei Sonnenaufgang. Jeder Teilnehmer trägt kabellose Kopfhörer und läuft im eigenen Rhythmus — verbunden durch Musik, Energie und die aufgehende Sonne. Ein Erlebnis, das man spüren muss.",
-        "features": ["Kabellose Kopfhörer für jeden", "3 DJ-Kanäle live", "5-10km Strecke", "After-Run Frühstück"]
-      },
-      "beach_disco": {
-        "title": "Sunrise Disco am Strand",
-        "description": "Tanzen am Strand, barfuß im Sand, während die Sonne über dem Horizont aufsteigt. DJs, gute Vibes und eine Community, die den Tag gemeinsam beginnt. Kein Alkohol, pure Energie.",
-        "features": ["Live DJs ab 5 Uhr", "Yoga-Session zum Warmup", "Gesunde Drinks & Snacks", "Community-Vibes"]
-      }
-    },
-    "planning": {
-      "eyebrow": "Eventplanung",
-      "title": "Dein Event, unsere Expertise",
-      "weddings": {
-        "title": "Hochzeiten",
-        "description": "Euer wichtigster Tag verdient perfekte Planung. Von der Location bis zum letzten Tanz — wir kümmern uns um jedes Detail."
-      },
-      "corporate": {
-        "title": "Corporate Events",
-        "description": "Firmenfeiern, Teambuilding, Produktlaunches — professionell geplant mit dem gewissen Vayve-Faktor."
-      },
-      "private": {
-        "title": "Private Feiern",
-        "description": "Geburtstage, Jubiläen, besondere Anlässe — wir machen deine Feier zu einem unvergesslichen Erlebnis."
-      }
-    },
-    "process": {
-      "eyebrow": "Unser Prozess",
-      "title": "Wie wir arbeiten",
-      "steps": [
-        {
-          "title": "Beratung",
-          "description": "Wir hören zu, verstehen deine Vision und entwickeln erste Ideen."
-        },
-        {
-          "title": "Konzept",
-          "description": "Wir erstellen ein maßgeschneidertes Konzept mit allen Details."
-        },
-        {
-          "title": "Planung",
-          "description": "Von Locations bis Catering — wir koordinieren alle Gewerke."
-        },
-        {
-          "title": "Umsetzung",
-          "description": "Am Event-Tag sind wir vor Ort und sorgen für einen reibungslosen Ablauf."
-        }
-      ]
+    "cta": {
+      "title": "Sei beim nächsten Mal dabei",
+      "body": "Schau dir an, was als Nächstes ansteht.",
+      "button": "Kommende Events"
     }
   },
   "gallery": {
     "hero": {
-      "title": "Galerie",
-      "subtitle": "Unsere Events in Bildern — Momente, die bewegen."
+      "eyebrow": "Galerie",
+      "title": "Impressionen",
+      "subtitle": "Momente von unseren Events."
     },
-    "filters": {
-      "all": "Alle",
-      "silent_disco": "Silent Disco",
-      "beach": "Strand Events",
-      "corporate": "Corporate",
-      "weddings": "Hochzeiten"
-    }
+    "empty": "Bald gibt's hier die ersten Eindrücke.",
+    "followCta": "Mehr auf Instagram"
   },
   "contact": {
     "hero": {
-      "title": "Lass uns reden",
-      "subtitle": "Du hast eine Idee? Wir machen sie zum Erlebnis."
+      "eyebrow": "Kontakt",
+      "title": "Sag Hallo",
+      "subtitle": "Booking, Kooperation oder einfach Hallo — schreib uns."
     },
     "form": {
       "name": "Name",
-      "name_placeholder": "Dein Name",
       "email": "E-Mail",
-      "email_placeholder": "deine@email.de",
       "subject": "Betreff",
-      "subject_placeholder": "Worum geht es?",
-      "event_type": "Event-Typ",
-      "event_types": {
-        "default": "Bitte wählen",
-        "wedding": "Hochzeit",
-        "corporate": "Corporate Event",
-        "private": "Private Feier",
-        "own_event": "Eigenes Event-Format",
-        "other": "Sonstiges"
-      },
       "message": "Nachricht",
-      "message_placeholder": "Erzähl uns von deiner Idee...",
-      "submit": "Anfrage senden",
-      "success": "Anfrage gesendet!",
-      "success_text": "Wir melden uns innerhalb von 24 Stunden bei dir."
+      "send": "Absenden",
+      "sending": "Wird gesendet…",
+      "successTitle": "Danke!",
+      "successBody": "Deine Nachricht ist bei uns. Wir melden uns.",
+      "error": "Etwas ist schiefgelaufen. Versuch's nochmal."
     },
     "info": {
-      "title": "Kontaktdaten",
-      "email_label": "E-Mail",
-      "phone_label": "Telefon",
-      "social_label": "Social Media",
-      "response_time": "Antwortzeit: Innerhalb von 24h"
+      "title": "Direkt",
+      "emailLabel": "E-Mail",
+      "instagramLabel": "Instagram"
     }
   },
-  "footer": {
-    "tagline": "Events, die bewegen.",
-    "navigation": "Navigation",
-    "services": "Services",
-    "own_events": "Eigene Events",
-    "event_planning": "Eventplanung",
-    "weddings": "Hochzeiten",
-    "corporate": "Corporate Events",
-    "contact": "Kontakt",
-    "legal": "Rechtliches",
-    "imprint": "Impressum",
-    "privacy": "Datenschutz",
-    "copyright": "© {year} Vayve. Alle Rechte vorbehalten."
-  },
-  "common": {
-    "read_more": "Mehr erfahren",
-    "get_in_touch": "Kontakt aufnehmen",
-    "back_to_top": "Nach oben",
-    "loading": "Laden..."
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "body": "Diese Seite gibt es nicht (mehr).",
+    "back": "Zur Startseite"
   }
 }
