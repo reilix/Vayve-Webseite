@@ -5,8 +5,12 @@ RUN apk add --no-cache git
 # Clone and install dependencies
 FROM base AS deps
 WORKDIR /app
-# CACHEBUST erlaubt frisches Klonen: docker build --build-arg CACHEBUST=$(date +%s)
 ARG CACHEBUST=1
+# Cache automatisch brechen, sobald sich main ändert (wichtig für Panel-Deploys
+# ohne Build-Args): die Commit-Metadaten ändern sich bei jedem neuen Commit und
+# invalidieren damit die folgende Clone-Schicht. CACHEBUST bleibt als manueller
+# Override (docker build --build-arg CACHEBUST=$(date +%s)).
+ADD https://api.github.com/repos/reilix/Vayve-Webseite/commits/main /tmp/commit.json
 RUN echo "cachebust=${CACHEBUST}" && git clone https://github.com/reilix/Vayve-Webseite.git .
 RUN npm install
 

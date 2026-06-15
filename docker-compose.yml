@@ -10,8 +10,12 @@ services:
     environment:
       - NODE_ENV=production
       - DATA_DIR=/app/data
+    # Secrets (SESSION_SECRET, ADMIN_PASSWORD_HASH) kommen aus dem Hostinger-
+    # Umgebungsvariablen-Panel (in den Container injiziert). Eine optionale
+    # .env.production wird zusätzlich geladen, falls vorhanden.
     env_file:
-      - .env.production
+      - path: .env.production
+        required: false
     volumes:
       - vayve_data:/app/data
     restart: unless-stopped
