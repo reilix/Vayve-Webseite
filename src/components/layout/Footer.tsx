@@ -21,7 +21,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/">
-              <Logo className="text-4xl" tone="gradient" />
+              <Logo className="h-11 md:h-12" />
             </Link>
             <p className="mt-4 max-w-xs text-cream/50 text-sm leading-relaxed">
               {t("tagline")}
@@ -92,6 +92,9 @@ export default function Footer() {
             </Link>
             <Link href="/datenschutz" className="hover:text-cream transition-colors">
               {t("privacy")}
+            </Link>
+            <Link href="/agb" className="hover:text-cream transition-colors">
+              AGB
             </Link>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

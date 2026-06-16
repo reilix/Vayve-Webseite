@@ -36,7 +36,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             className="fixed top-0 right-0 bottom-0 w-[82%] max-w-sm bg-[#160c2c] z-50 flex flex-col border-l border-white/10"
           >
             <div className="flex items-center justify-between p-6">
-              <Logo className="text-2xl" />
+              <Logo className="h-7" />
               <button
                 onClick={onClose}
                 className="inline-flex size-11 items-center justify-center text-cream/60 hover:text-cream transition-colors cursor-pointer"

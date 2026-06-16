@@ -24,5 +24,6 @@ export const routing = defineRouting({
     },
     "/impressum": "/impressum",
     "/datenschutz": "/datenschutz",
+    "/agb": "/agb",
   },
 });

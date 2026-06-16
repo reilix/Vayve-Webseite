@@ -40,8 +40,8 @@ export default function Header() {
         )}
       >
         <Container className="flex items-center justify-between h-16 md:h-20">
-          <Link href="/" className="text-2xl md:text-3xl">
-            <Logo />
+          <Link href="/" className="shrink-0">
+            <Logo className="h-8 md:h-10" />
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
