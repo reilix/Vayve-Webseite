@@ -11,7 +11,7 @@ export default function NotFound() {
           Seite nicht gefunden
         </p>
         <Link
-          href="/de"
+          href="/"
           className="mt-8 inline-block rounded-full bg-primary px-6 py-3 font-display font-bold text-white hover:shadow-[var(--shadow-glow-pink)] transition-all"
         >
           Zur Startseite

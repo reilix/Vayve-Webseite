@@ -1,6 +1,5 @@
 import { setRequestLocale } from "next-intl/server";
 import HeroSection from "@/components/sections/home/HeroSection";
-import MarqueeStrip from "@/components/sections/home/MarqueeStrip";
 import UpcomingEvents from "@/components/sections/home/UpcomingEvents";
 import VibeSection from "@/components/sections/home/VibeSection";
 import InstagramCTA from "@/components/sections/home/InstagramCTA";
@@ -18,7 +17,6 @@ export default async function HomePage({
   return (
     <>
       <HeroSection />
-      <MarqueeStrip />
       <UpcomingEvents locale={locale} />
       <VibeSection />
       <InstagramCTA />

@@ -3,6 +3,8 @@ import { defineRouting } from "next-intl/routing";
 export const routing = defineRouting({
   locales: ["de", "en"],
   defaultLocale: "de",
+  // DE ohne Prefix auf der Hauptdomain (vayve.de), EN unter /en.
+  localePrefix: "as-needed",
   pathnames: {
     "/": "/",
     "/tickets": "/tickets",
