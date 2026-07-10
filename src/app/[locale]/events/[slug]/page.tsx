@@ -86,21 +86,19 @@ export default async function EventDetailPage({
       </section>
 
       <Container className="grid grid-cols-1 gap-12 py-16 lg:grid-cols-[1fr_360px]">
-        {/* Beschreibung + Line-up */}
-        <div>
+        {/* Line-up + Beschreibung — min-w-0 verhindert, dass lange Inhalte
+            (z. B. eingebettete Player-URLs) die Grid-Spalte über den Screen
+            hinaus aufblähen und die Info-Card wegschieben. */}
+        <div className="min-w-0">
           {past && (
             <p className="mb-6 inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm text-cream/60">
               {t("past")}
             </p>
           )}
-          {description && (
-            <p className="whitespace-pre-line text-lg leading-relaxed text-cream/80">
-              {description}
-            </p>
-          )}
 
+          {/* Line-up steht oben — in der Szene relevanter als der Fließtext */}
           {lineup.length > 0 && (
-            <div className="mt-10">
+            <div className="mb-10">
               <h2 className="mb-4 font-display text-2xl font-extrabold text-cream">
                 {t("lineup")}
               </h2>
@@ -116,6 +114,8 @@ export default async function EventDetailPage({
               </div>
             </div>
           )}
+
+          {description && <EventDescription html={description} />}
         </div>
 
         {/* Details-Card */}
@@ -173,6 +173,40 @@ export default async function EventDetailPage({
         </section>
       )}
     </article>
+  );
+}
+
+/**
+ * Rendert die Event-Beschreibung. Der Text wird im Admin (hinter Login)
+ * gepflegt und kann eingebettetes HTML enthalten — z. B. SoundCloud-Player
+ * der DJs. Enthält der Text HTML-Tags, wird er als Markup gerendert, sonst
+ * als reiner Text (mit erhaltenen Zeilenumbrüchen).
+ *
+ * whitespace-pre-line erhält die Absätze des Fließtexts; overflow-wrap-anywhere
+ * bricht überlange Tokens (URLs) um; die iframe-Regeln machen die Player
+ * responsive, sodass nichts aus dem Container ragt.
+ */
+function EventDescription({ html }: { html: string }) {
+  const containsHtml = /<\/?(iframe|a|div|p|br|img|strong|em|ul|ol|li|span)\b/i.test(
+    html,
+  );
+
+  const base =
+    "text-lg leading-relaxed text-cream/80 whitespace-pre-line [overflow-wrap:anywhere]";
+
+  if (!containsHtml) {
+    return <p className={base}>{html}</p>;
+  }
+
+  return (
+    <div
+      className={
+        base +
+        " [&_iframe]:my-4 [&_iframe]:block [&_iframe]:w-full [&_iframe]:max-w-full [&_iframe]:rounded-xl" +
+        " [&_a]:text-mint [&_a]:underline [&_a]:decoration-mint/40 hover:[&_a]:decoration-mint"
+      }
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
   );
 }
 
