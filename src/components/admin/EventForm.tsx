@@ -161,6 +161,11 @@ export default function EventForm({
           // eslint-disable-next-line @next/next/no-img-element
           <img src={event.cover_image} alt="" className="h-40 w-auto rounded-[14px] border border-white/10 object-cover" />
         )}
+        <p className="text-sm text-muted">
+          Empfohlen: Hochformat 4:5, 2160 × 2700 px (mind. 1080 × 1350), JPG/WebP unter 2 MB.
+          Wichtige Texte mit ca. 8 % Abstand zum Rand. Andere Formate werden nie
+          beschnitten, nur mit einem weichgezeichneten Hintergrund aufgefüllt.
+        </p>
         <div className="grid gap-5 md:grid-cols-2">
           <div>
             <label className={label} htmlFor="cover_file">Datei hochladen</label>
