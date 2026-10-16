@@ -26,19 +26,33 @@ export default function EventCard({
       href={{ pathname: "/events/[slug]", params: { slug: event.slug } }}
       className="group relative block overflow-hidden rounded-[22px] border border-white/10 bg-[#1a0f33]"
     >
+      {/* Flyer-Fläche im 4:5-Format. Der Flyer wird nie beschnitten
+          (object-contain); freie Ränder bei abweichenden Formaten füllt eine
+          weichgezeichnete Kopie des Flyers. */}
       <div className="relative aspect-[4/5] w-full overflow-hidden">
         {event.cover_image ? (
-          <Image
-            src={event.cover_image}
-            alt={event.title}
-            fill
-            sizes="(max-width: 768px) 100vw, 33vw"
-            unoptimized={!event.cover_image.startsWith("/")}
-            className={cn(
-              "object-cover transition-transform duration-500 group-hover:scale-105",
-              past && "grayscale-[0.4]",
-            )}
-          />
+          <>
+            <Image
+              src={event.cover_image}
+              alt=""
+              aria-hidden
+              fill
+              sizes="(max-width: 768px) 50vw, 20vw"
+              unoptimized={!event.cover_image.startsWith("/")}
+              className="scale-125 object-cover opacity-70 blur-2xl"
+            />
+            <Image
+              src={event.cover_image}
+              alt={event.title}
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
+              unoptimized={!event.cover_image.startsWith("/")}
+              className={cn(
+                "object-contain transition-transform duration-500 group-hover:scale-[1.03]",
+                past && "grayscale-[0.4]",
+              )}
+            />
+          </>
         ) : (
           <div className="absolute inset-0 grain bg-[radial-gradient(120%_120%_at_30%_0%,#7c3aed_0%,#6d28d9_35%,#150a28_100%)]">
             <span className="font-display absolute inset-0 flex items-center justify-center text-5xl font-extrabold tracking-tight text-white/10">
@@ -46,8 +60,6 @@ export default function EventCard({
             </span>
           </div>
         )}
-
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0c0518] via-[#0c0518]/30 to-transparent" />
 
         {/* Datum-Chip */}
         <span className="absolute left-3 top-3 rounded-full bg-[#0c0518]/80 px-3 py-1 font-display text-sm font-bold text-cream backdrop-blur">
@@ -66,20 +78,21 @@ export default function EventCard({
           </span>
         )}
 
-        {/* Inhalt unten */}
-        <div className="absolute inset-x-0 bottom-0 p-4">
-          <p className="font-display text-xs font-bold uppercase tracking-wider text-mint">
-            {seriesLabel(event.series, locale)}
+      </div>
+
+      {/* Inhalt unter dem Flyer — überdeckt keine Flyer-Texte */}
+      <div className="p-4">
+        <p className="font-display text-xs font-bold uppercase tracking-wider text-mint">
+          {seriesLabel(event.series, locale)}
+        </p>
+        <h3 className="font-display text-2xl font-extrabold leading-tight text-cream">
+          {event.title}
+        </h3>
+        {(event.location_name || event.city) && (
+          <p className="mt-1 text-sm text-cream/60">
+            {[event.location_name, event.city].filter(Boolean).join(" · ")}
           </p>
-          <h3 className="font-display text-2xl font-extrabold leading-tight text-cream">
-            {event.title}
-          </h3>
-          {(event.location_name || event.city) && (
-            <p className="mt-1 text-sm text-cream/60">
-              {[event.location_name, event.city].filter(Boolean).join(" · ")}
-            </p>
-          )}
-        </div>
+        )}
       </div>
     </Link>
   );

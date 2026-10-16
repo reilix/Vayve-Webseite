@@ -53,35 +53,54 @@ export default async function EventDetailPage({
 
   return (
     <article className="pt-16">
-      {/* Cover */}
-      <section className="relative h-[52vh] min-h-[360px] w-full overflow-hidden grain">
+      {/* Cover — der Flyer wird immer vollständig gezeigt (kein Beschnitt).
+          Dahinter liegt eine weichgezeichnete Kopie als Atmosphäre, die bei
+          jedem Seitenverhältnis und jeder Bildschirmbreite den Raum füllt. */}
+      <section className="relative overflow-hidden grain">
         {ev.cover_image ? (
           <Image
             src={ev.cover_image}
-            alt={ev.title}
+            alt=""
+            aria-hidden
             fill
-            priority
-            sizes="100vw"
+            sizes="50vw"
             unoptimized={!ev.cover_image.startsWith("/")}
-            className="object-cover"
+            className="scale-125 object-cover opacity-50 blur-3xl"
           />
         ) : (
           <div className="absolute inset-0 bg-[radial-gradient(120%_120%_at_50%_0%,#3b1576_0%,#1a0b2e_50%,#0c0518_100%)]" />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#150a28] via-[#150a28]/40 to-transparent" />
-        <Container className="absolute inset-x-0 bottom-0 z-10 pb-8">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#150a28]/30 via-[#150a28]/50 to-[#150a28]" />
+
+        <Container className="relative z-10 pt-8 pb-10 md:pt-12">
           <Link
             href="/events"
-            className="mb-4 inline-block text-sm font-semibold text-cream/70 hover:text-mint transition-colors"
+            className="mb-6 inline-block text-sm font-semibold text-cream/70 hover:text-mint transition-colors"
           >
             ← {t("back")}
           </Link>
-          <p className="font-display text-sm font-bold uppercase tracking-wider text-mint">
-            {seriesLabel(ev.series, locale)}
-          </p>
-          <h1 className="font-display text-5xl md:text-7xl font-extrabold tracking-tight text-cream">
-            {ev.title}
-          </h1>
+
+          <div className="flex flex-col gap-8">
+            {ev.cover_image && (
+              // Natürliches Seitenverhältnis: begrenzt durch Breite und Höhe,
+              // damit Hoch- wie Querformat komplett sichtbar bleiben.
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={ev.cover_image}
+                alt={ev.title}
+                fetchPriority="high"
+                className="mx-auto block h-auto max-h-[70vh] w-auto max-w-full rounded-[22px] border border-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7)] md:mx-0"
+              />
+            )}
+            <div className="min-w-0">
+              <p className="font-display text-sm font-bold uppercase tracking-wider text-mint">
+                {seriesLabel(ev.series, locale)}
+              </p>
+              <h1 className="font-display text-5xl md:text-7xl font-extrabold tracking-tight text-cream break-words">
+                {ev.title}
+              </h1>
+            </div>
+          </div>
         </Container>
       </section>
 
