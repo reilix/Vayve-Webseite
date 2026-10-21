@@ -5,6 +5,7 @@ import { siteConfig } from "@/lib/constants";
 import Container from "@/components/layout/Container";
 import ContactForm from "@/components/sections/contact/ContactForm";
 import InstagramIcon from "@/components/brand/InstagramIcon";
+import PageGlow from "@/components/layout/PageGlow";
 
 export async function generateMetadata({
   params,
@@ -26,9 +27,9 @@ export default async function ContactPage({
   const t = await getTranslations("contact");
 
   return (
-    <div className="pt-28 md:pt-36">
+    <div className="relative isolate pt-28 md:pt-36">
+      <PageGlow glows={[{ color: "var(--color-primary)", x: "10%" }]} />
       <section className="relative overflow-hidden pb-12">
-        <div className="glow-orb left-[-8%] top-[-10%] size-[34vw] bg-primary/30" />
         <Container className="relative z-10 max-w-3xl">
           <span className="font-display text-xs font-bold uppercase tracking-[0.25em] text-mint">
             {t("hero.eyebrow")}

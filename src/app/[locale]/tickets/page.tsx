@@ -2,6 +2,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import Container from "@/components/layout/Container";
 import WeeztixEmbed from "@/components/tickets/WeeztixEmbed";
+import PageGlow from "@/components/layout/PageGlow";
 
 export async function generateMetadata({
   params,
@@ -39,9 +40,9 @@ export default async function TicketsPage({
   const t = await getTranslations("tickets");
 
   return (
-    <div className="pt-28 md:pt-32">
+    <div className="relative isolate pt-28 md:pt-32">
+      <PageGlow glows={[{ color: "var(--color-primary)", x: "10%" }]} />
       <section className="relative overflow-hidden pb-8">
-        <div className="glow-orb left-[-6%] top-[-10%] size-[32vw] bg-primary/30" />
         <Container className="relative z-10">
           <span className="font-display text-xs font-bold uppercase tracking-[0.25em] text-mint">
             {t("hero.eyebrow")}

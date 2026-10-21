@@ -1,9 +1,9 @@
 # Veranstaltungsgrafiken (Flyer) — Formatvorgaben
 
-Die Website zeigt Flyer **nie beschnitten**: Auf der Event-Seite erscheint der
-Flyer immer komplett im eigenen Seitenverhältnis, in den Event-Karten (Startseite,
-Event-Liste) in einer 4:5-Fläche. Weicht der Flyer davon ab, füllt eine
-weichgezeichnete Kopie des Flyers die freien Ränder.
+Die Website zeigt Flyer **nie beschnitten** und immer im eigenen
+Seitenverhältnis — auf der Event-Seite wie in den Event-Karten (Startseite,
+Event-Liste). Hoch- und Querformat funktionieren beide; die Karte passt ihre
+Höhe dem Flyer an. Datum und Ticket-Status stehen unter dem Flyer, nicht darauf.
 
 ## Master-Format (für die Website)
 
@@ -20,8 +20,8 @@ weichgezeichnete Kopie des Flyers die freien Ränder.
 
 - Wichtige Texte (Datum, Location, Line-up) mindestens **8 % vom Rand** entfernt
   halten (bei 2160 × 2700 ca. 175 px).
-- In den **oberen ca. 10 %** liegen in den Event-Karten links der Datums-Chip und
-  rechts der Ticket-Status — dort keine wichtigen Infos platzieren.
+- Liegen mehrere Events nebeneinander, wirken gleiche Formate am ruhigsten —
+  also möglichst bei einem Format bleiben.
 
 ## Weitere Formate (optional, für Social Media)
 

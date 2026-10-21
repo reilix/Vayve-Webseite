@@ -5,7 +5,7 @@ export const siteConfig = {
     en: "Good Vibe Raves",
   },
   url: "https://vayve.de",
-  email: "info@nios.digital",
+  email: "info@vayve.de",
   social: {
     instagram: "https://www.instagram.com/vayve.germany/",
   },
@@ -19,7 +19,7 @@ export const legal = {
   street: "Haderslebener Str. 2",
   zipCity: "22049 Hamburg",
   represented: "Felix Gudowius",
-  email: "info@nios.digital",
+  email: "info@vayve.de",
   court: "Amtsgericht Hamburg",
   register: "HRB 186579",
   vatId: "DE368264501",

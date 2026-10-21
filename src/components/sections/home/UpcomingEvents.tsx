@@ -33,7 +33,7 @@ export default async function UpcomingEvents({ locale }: { locale: string }) {
             {t("empty")}
           </p>
         ) : (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 items-start gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {events.map((ev) => (
               <EventCard key={ev.id} event={ev} locale={locale} />
             ))}
