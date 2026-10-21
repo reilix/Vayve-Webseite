@@ -1,0 +1,48 @@
+# Baut die Seite auf GitHub und legt das fertige Paket auf den Branch
+# `siteground-deploy`. SiteGround zieht diesen Branch und startet nur noch
+# `npm start` — dort wird nichts gebaut. Warum: docs/deploy-siteground.md.
+name: SiteGround-Paket bauen
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: siteground-deploy
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Gleiche Hauptversion wie die Laufzeit bei SiteGround (Node 22) —
+      # native Module wie sharp werden für genau diese Version gebaut.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+      - run: scripts/assemble-standalone.sh deploy
+
+      - name: Paket auf siteground-deploy legen
+        working-directory: deploy
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Jedes Mal ein frischer Einzel-Commit: Der Branch ist ein
+          # Auslieferungsstand und keine Historie — sonst wüchse das Repo
+          # mit jedem Deploy um ein komplettes node_modules.
+          git init -q -b siteground-deploy
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -f
+          git commit -q -m "Vorgebaut aus ${GITHUB_SHA}"
+          git push -q -f "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" siteground-deploy
