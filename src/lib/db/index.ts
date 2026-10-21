@@ -54,19 +54,39 @@ CREATE TABLE IF NOT EXISTS meta (
 );
 `;
 
+/**
+ * Führt einen Initialisierungsschritt aus und wiederholt ihn bei einer
+ * Sperre. Beim Build öffnen mehrere Worker die frische DB gleichzeitig; der
+ * Wechsel auf WAL braucht eine exklusive Sperre, und SQLite meldet dabei
+ * SQLITE_BUSY teils sofort, ohne busy_timeout abzuwarten. Wer verliert,
+ * wartet kurz und versucht es erneut — danach ist WAL gesetzt und die
+ * übrigen Schritte schreiben nichts mehr.
+ */
+function withBusyRetry(step: () => void): void {
+  const wait = new Int32Array(new SharedArrayBuffer(4));
+  for (let attempt = 1; ; attempt++) {
+    try {
+      step();
+      return;
+    } catch (error) {
+      const code = (error as { errcode?: number }).errcode;
+      // 5 = SQLITE_BUSY, 6 = SQLITE_LOCKED
+      if ((code !== 5 && code !== 6) || attempt >= 50) throw error;
+      Atomics.wait(wait, 0, 0, 50 + Math.floor(Math.random() * 100));
+    }
+  }
+}
+
 function createConnection(): DatabaseSync {
   fs.mkdirSync(DATA_DIR, { recursive: true });
   fs.mkdirSync(UPLOADS_DIR, { recursive: true });
 
   const db = new DatabaseSync(DATABASE_PATH);
-  // busy_timeout zuerst: Beim Build öffnen mehrere Worker die frische DB
-  // gleichzeitig, und der Wechsel auf WAL braucht eine exklusive Sperre —
-  // ohne Wartezeit scheitert er sofort mit "database is locked".
   db.exec("PRAGMA busy_timeout = 5000;");
-  db.exec("PRAGMA journal_mode = WAL;");
+  withBusyRetry(() => db.exec("PRAGMA journal_mode = WAL;"));
   db.exec("PRAGMA foreign_keys = ON;");
-  db.exec(SCHEMA);
-  seedIfEmpty(db);
+  withBusyRetry(() => db.exec(SCHEMA));
+  withBusyRetry(() => seedIfEmpty(db));
   return db;
 }
 
