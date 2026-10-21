@@ -163,8 +163,8 @@ export default function EventForm({
         )}
         <p className="text-sm text-muted">
           Empfohlen: Hochformat 4:5, 2160 × 2700 px (mind. 1080 × 1350), JPG/WebP unter 2 MB.
-          Wichtige Texte mit ca. 8 % Abstand zum Rand. Andere Formate werden nie
-          beschnitten, nur mit einem weichgezeichneten Hintergrund aufgefüllt.
+          Querformat geht ebenso — der Flyer wird überall komplett im eigenen Format gezeigt.
+          Wichtige Texte mit ca. 8 % Abstand zum Rand.
         </p>
         <div className="grid gap-5 md:grid-cols-2">
           <div>

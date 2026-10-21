@@ -4,6 +4,7 @@ import Image from "next/image";
 import { listEvents } from "@/lib/db/events";
 import { siteConfig } from "@/lib/constants";
 import Container from "@/components/layout/Container";
+import PageGlow from "@/components/layout/PageGlow";
 
 export async function generateMetadata({
   params,
@@ -42,9 +43,9 @@ export default async function GalleryPage({
   const images = collectImages();
 
   return (
-    <div className="pt-28 md:pt-36">
+    <div className="relative isolate pt-28 md:pt-36">
+      <PageGlow glows={[{ color: "var(--color-magenta)", x: "90%" }]} />
       <section className="relative overflow-hidden pb-12">
-        <div className="glow-orb right-[-8%] top-[-10%] size-[34vw] bg-magenta/30" />
         <Container className="relative z-10">
           <span className="font-display text-xs font-bold uppercase tracking-[0.25em] text-mint">
             {t("hero.eyebrow")}

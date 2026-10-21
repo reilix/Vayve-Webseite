@@ -31,7 +31,7 @@ export default async function DatenschutzPage({
             <br />
             Haderslebener Str. 2, 22049 Hamburg
             <br />
-            E-Mail: <a href="mailto:info@nios.digital">info@nios.digital</a>
+            E-Mail: <a href="mailto:info@vayve.de">info@vayve.de</a>
           </p>
 
           <h2>2. Hosting</h2>

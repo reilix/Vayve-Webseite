@@ -37,7 +37,7 @@ export default async function ImpressumPage({
 
           <h3>Kontakt</h3>
           <p>
-            E-Mail: <a href="mailto:info@nios.digital">info@nios.digital</a>
+            E-Mail: <a href="mailto:info@vayve.de">info@vayve.de</a>
           </p>
 
           <h3>Registereintrag</h3>

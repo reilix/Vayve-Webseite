@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { listUpcoming, listPast } from "@/lib/db/events";
 import EventCard from "@/components/events/EventCard";
 import Container from "@/components/layout/Container";
+import PageGlow from "@/components/layout/PageGlow";
 
 export async function generateMetadata({
   params,
@@ -29,10 +30,10 @@ export default async function EventsPage({
   const past = listPast(12);
 
   return (
-    <div className="pt-28 md:pt-36">
+    <div className="relative isolate pt-28 md:pt-36">
+      <PageGlow glows={[{ color: "var(--color-primary)", x: "10%" }]} />
       {/* Hero */}
       <section className="relative overflow-hidden pb-12">
-        <div className="glow-orb left-[-5%] top-[-10%] size-[34vw] bg-primary/30" />
         <Container className="relative z-10">
           <span className="font-display text-xs font-bold uppercase tracking-[0.25em] text-mint">
             {t("hero.eyebrow")}
@@ -56,7 +57,7 @@ export default async function EventsPage({
                 <h2 className="mb-8 font-display text-2xl font-extrabold uppercase tracking-wide text-cream/80">
                   {t("upcomingTitle")}
                 </h2>
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid grid-cols-1 items-start gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {upcoming.map((ev) => (
                     <EventCard key={ev.id} event={ev} locale={locale} />
                   ))}
@@ -69,7 +70,7 @@ export default async function EventsPage({
                 <h2 className="mb-8 font-display text-2xl font-extrabold uppercase tracking-wide text-cream/40">
                   {t("pastTitle")}
                 </h2>
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid grid-cols-1 items-start gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {past.map((ev) => (
                     <EventCard key={ev.id} event={ev} locale={locale} />
                   ))}

@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { Music2, Users, Sparkles } from "lucide-react";
 import Container from "@/components/layout/Container";
 import ScrollReveal from "@/components/animation/ScrollReveal";
+import PageGlow from "@/components/layout/PageGlow";
 
 export async function generateMetadata({
   params,
@@ -31,11 +32,10 @@ export default async function AboutPage({
   ] as const;
 
   return (
-    <div className="pt-28 md:pt-36">
+    <div className="relative isolate pt-28 md:pt-36">
+      <PageGlow glows={[{ color: "var(--color-violet)", x: "10%", strength: 45 }, { color: "var(--color-mint)", x: "90%", strength: 18 }]} />
       {/* Hero */}
       <section className="relative overflow-hidden pb-16">
-        <div className="glow-orb left-[-8%] top-[-10%] size-[36vw] bg-violet/40" />
-        <div className="glow-orb right-[-6%] top-[20%] size-[30vw] bg-mint/20" />
         <Container className="relative z-10 max-w-3xl">
           <span className="font-display text-xs font-bold uppercase tracking-[0.25em] text-mint">
             {t("hero.eyebrow")}
