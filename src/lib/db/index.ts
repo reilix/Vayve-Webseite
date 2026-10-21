@@ -59,9 +59,12 @@ function createConnection(): DatabaseSync {
   fs.mkdirSync(UPLOADS_DIR, { recursive: true });
 
   const db = new DatabaseSync(DATABASE_PATH);
+  // busy_timeout zuerst: Beim Build öffnen mehrere Worker die frische DB
+  // gleichzeitig, und der Wechsel auf WAL braucht eine exklusive Sperre —
+  // ohne Wartezeit scheitert er sofort mit "database is locked".
+  db.exec("PRAGMA busy_timeout = 5000;");
   db.exec("PRAGMA journal_mode = WAL;");
   db.exec("PRAGMA foreign_keys = ON;");
-  db.exec("PRAGMA busy_timeout = 5000;");
   db.exec(SCHEMA);
   seedIfEmpty(db);
   return db;
