@@ -13,7 +13,11 @@ mkdir -p "$OUT"
 # unintentionally"), und damit lägen .git, Quellcode und ggf. .env-Dateien im
 # ausgelieferten Paket. Beim Build angelegte Daten (data/) bleiben ebenfalls weg.
 cp -a .next/standalone/server.js "$OUT/"
-cp -a .next/standalone/node_modules "$OUT/"
+# Als vendor_modules und nicht als node_modules: SiteGround verwirft
+# node_modules beim Deploy und installiert neu — laut package.json gibt es
+# nichts zu installieren, und `next` fehlt dann. Build- und Start-Befehl
+# (siehe package.json unten) stellen den Ordner wieder her.
+cp -a .next/standalone/node_modules "$OUT/vendor_modules"
 cp -a .next/standalone/.next "$OUT/"
 # Statische Dateien legt Next bewusst nicht ins Standalone-Paket.
 cp -a .next/static "$OUT/.next/static"
@@ -29,8 +33,8 @@ cat > "$OUT/package.json" <<'JSON'
   "name": "vayve-webseite",
   "private": true,
   "scripts": {
-    "build": "echo 'vorgebaut von GitHub Actions'",
-    "start": "HOSTNAME=0.0.0.0 node server.js"
+    "build": "rm -rf node_modules && cp -a vendor_modules node_modules && echo 'vorgebaut von GitHub Actions'",
+    "start": "[ -f node_modules/next/package.json ] || { rm -rf node_modules && cp -a vendor_modules node_modules; }; HOSTNAME=0.0.0.0 node server.js"
   },
   "engines": { "node": ">=22.13" }
 }
