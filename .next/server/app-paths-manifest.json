@@ -1,0 +1,19 @@
+{
+  "/[locale]/agb/page": "app/[locale]/agb/page.js",
+  "/[locale]/datenschutz/page": "app/[locale]/datenschutz/page.js",
+  "/[locale]/events/[slug]/page": "app/[locale]/events/[slug]/page.js",
+  "/[locale]/events/page": "app/[locale]/events/page.js",
+  "/[locale]/galerie/page": "app/[locale]/galerie/page.js",
+  "/[locale]/impressum/page": "app/[locale]/impressum/page.js",
+  "/[locale]/kontakt/page": "app/[locale]/kontakt/page.js",
+  "/[locale]/page": "app/[locale]/page.js",
+  "/[locale]/tickets/page": "app/[locale]/tickets/page.js",
+  "/[locale]/ueber-uns/page": "app/[locale]/ueber-uns/page.js",
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/admin/events/[id]/edit/page": "app/admin/events/[id]/edit/page.js",
+  "/admin/events/new/page": "app/admin/events/new/page.js",
+  "/admin/login/page": "app/admin/login/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/uploads/[file]/route": "app/uploads/[file]/route.js"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "vayve-webseite",
+  "private": true,
+  "scripts": {
+    "build": "rm -rf node_modules && cp -a vendor_modules node_modules && echo 'vorgebaut von GitHub Actions'",
+    "start": "[ -f node_modules/next/package.json ] || { rm -rf node_modules && cp -a vendor_modules node_modules; }; HOSTNAME=0.0.0.0 node server.js"
+  },
+  "engines": { "node": ">=22.13" }
+}

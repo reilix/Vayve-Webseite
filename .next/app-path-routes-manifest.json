@@ -1,0 +1,19 @@
+{
+  "/[locale]/agb/page": "/[locale]/agb",
+  "/[locale]/datenschutz/page": "/[locale]/datenschutz",
+  "/[locale]/events/[slug]/page": "/[locale]/events/[slug]",
+  "/[locale]/events/page": "/[locale]/events",
+  "/[locale]/galerie/page": "/[locale]/galerie",
+  "/[locale]/impressum/page": "/[locale]/impressum",
+  "/[locale]/kontakt/page": "/[locale]/kontakt",
+  "/[locale]/page": "/[locale]",
+  "/[locale]/tickets/page": "/[locale]/tickets",
+  "/[locale]/ueber-uns/page": "/[locale]/ueber-uns",
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/admin/events/[id]/edit/page": "/admin/events/[id]/edit",
+  "/admin/events/new/page": "/admin/events/new",
+  "/admin/login/page": "/admin/login",
+  "/admin/page": "/admin",
+  "/uploads/[file]/route": "/uploads/[file]"
+}
