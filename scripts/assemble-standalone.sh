@@ -7,14 +7,17 @@ set -euo pipefail
 
 OUT="${1:?Zielverzeichnis angeben}"
 rm -rf "$OUT"
-cp -a .next/standalone "$OUT"
+mkdir -p "$OUT"
+# Nur, was der Server braucht — ausdrücklich keine Kopie von .next/standalone:
+# Next verfolgt hier das ganze Projekt mit (Warnung „whole project was traced
+# unintentionally"), und damit lägen .git, Quellcode und ggf. .env-Dateien im
+# ausgelieferten Paket. Beim Build angelegte Daten (data/) bleiben ebenfalls weg.
+cp -a .next/standalone/server.js "$OUT/"
+cp -a .next/standalone/node_modules "$OUT/"
+cp -a .next/standalone/.next "$OUT/"
 # Statische Dateien legt Next bewusst nicht ins Standalone-Paket.
-mkdir -p "$OUT/.next"
 cp -a .next/static "$OUT/.next/static"
 cp -a public "$OUT/public"
-# Beim Build angelegte Datenbank gehört nicht ins Paket — sie entsteht beim
-# ersten Start in DATA_DIR.
-rm -rf "$OUT/data"
 
 # Eigene package.json: keine Abhängigkeiten (alles liegt schon in
 # node_modules), kein Build. SiteGround führt nur noch `npm start` aus.
