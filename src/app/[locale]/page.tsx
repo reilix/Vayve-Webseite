@@ -15,7 +15,7 @@ export function generateStaticParams() {
   return [];
 }
 
-const TICKER = ["Good Vibe Raves", "Hamburg", "Hard House", "Trance", "Bounce", "House", "Vayve:Air", "Open Air"];
+const TICKER = ["Good Vibe Raves", "Hamburg", "Hard House", "Hard Groove", "Trance", "Bounce", "Vayve:Air", "Open Air"];
 
 export default async function HomePage({
   params,
