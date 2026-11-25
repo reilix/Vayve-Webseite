@@ -13,7 +13,14 @@
 const nextConfig = {
   output: "standalone",
   images: {
-    formats: ["image/avif", "image/webp"],
+    // Nur WebP: AVIF-Kodierung kostet mit sharp ein Vielfaches an CPU, und
+    // jede Variante (Breite × Format) wird einzeln berechnet.
+    formats: ["image/webp"],
+    // Wenige Breiten = wenige Varianten, die je einmal berechnet werden.
+    deviceSizes: [640, 828, 1080, 1600],
+    imageSizes: [64, 128, 256, 384],
+    // Optimierte Bilder 31 Tage cachen (Uploads ändern sich nie: neue Datei = neuer Name).
+    minimumCacheTTL: 2678400,
   },
   turbopack: {
     resolveAlias: {

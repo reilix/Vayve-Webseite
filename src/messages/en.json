@@ -2,6 +2,7 @@
   "nav": {
     "home": "Home",
     "events": "Events",
+    "sets": "Sets",
     "about": "About",
     "gallery": "Gallery",
     "contact": "Contact",
@@ -24,13 +25,25 @@
       "subtitle": "VAYVE brings the electronic scene together — at open airs, raves and everywhere in between.",
       "ctaEvents": "Upcoming events",
       "ctaTickets": "Tickets",
-      "scroll": "Scroll"
+      "scroll": "Scroll",
+      "status": "Live from Hamburg"
     },
     "upcoming": {
       "eyebrow": "Up next",
       "title": "Upcoming events",
       "viewAll": "All events",
       "empty": "More coming soon — follow us on Instagram."
+    },
+    "sets": {
+      "eyebrow": "Live sets",
+      "title": "Latest sets",
+      "subtitle": "Recorded on our floors. Hit play and get the night back.",
+      "viewAll": "All sets",
+      "channel": "YouTube channel",
+      "play": "Play set",
+      "nowPlaying": "Now playing",
+      "queue": "More sets",
+      "consent": "YouTube only loads once you press play (privacy)."
     },
     "vibe": {
       "eyebrow": "The vibe",
@@ -41,7 +54,8 @@
     "instagram": {
       "title": "Follow the vibe",
       "body": "All updates, line-ups and good vibes first on Instagram.",
-      "cta": "@vayve.germany"
+      "cta": "@vayve.germany",
+      "youtube": "Sets on YouTube"
     }
   },
   "tickets": {
@@ -62,6 +76,13 @@
     "pastTitle": "Past",
     "empty": "No events planned right now. Check back soon."
   },
+  "sets": {
+    "hero": {
+      "eyebrow": "Live sets",
+      "title": "All sets",
+      "subtitle": "Recordings of our nights, straight from the YouTube channel."
+    }
+  },
   "eventDetail": {
     "back": "All events",
     "when": "When",
@@ -71,7 +92,8 @@
     "genres": "Sound",
     "price": "Entry",
     "past": "This event has passed.",
-    "moreEvents": "More events"
+    "moreEvents": "More events",
+    "details": "Details"
   },
   "about": {
     "hero": {

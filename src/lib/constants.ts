@@ -8,6 +8,7 @@ export const siteConfig = {
   email: "info@nios.digital",
   social: {
     instagram: "https://www.instagram.com/vayve.germany/",
+    youtube: "https://www.youtube.com/@vayve.germany",
   },
   ticketUrl:
     "https://shop.weeztix.com/c1017a81-64f7-11f1-8e27-d65b0659bc31/tickets?utm_source=ig&utm_medium=social&utm_content=link_in_bio",
@@ -28,6 +29,7 @@ export const legal = {
 export const navLinks = [
   { key: "home", href: "/" },
   { key: "events", href: "/events" },
+  { key: "sets", href: "/sets" },
   { key: "about", href: "/ueber-uns" },
   { key: "gallery", href: "/galerie" },
   { key: "contact", href: "/kontakt" },

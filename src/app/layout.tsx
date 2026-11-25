@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { syne, inter } from "@/lib/fonts";
+import { archivo, spaceGrotesk, spaceMono } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -35,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      className={`${syne.variable} ${inter.variable} h-full`}
+      className={`${archivo.variable} ${spaceGrotesk.variable} ${spaceMono.variable} h-full`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col antialiased">{children}</body>

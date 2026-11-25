@@ -2,19 +2,16 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-[#150a28] flex items-center justify-center px-4 grain">
+    <div className="scanlines relative flex min-h-screen items-center justify-center overflow-hidden bg-background px-4">
+      <div className="absolute inset-0 bg-grid" />
       <div className="relative z-10 text-center">
-        <h1 className="font-display text-8xl md:text-9xl font-extrabold text-gradient">
+        <p className="label-mono text-acid">[ERR] — Signal lost</p>
+        <h1 className="text-rgb animate-glitch mt-6 font-display text-[clamp(6rem,22vw,14rem)] leading-none text-cream">
           404
         </h1>
-        <p className="mt-4 font-display text-xl text-cream/60">
-          Seite nicht gefunden
-        </p>
-        <Link
-          href="/"
-          className="mt-8 inline-block rounded-full bg-primary px-6 py-3 font-display font-bold text-white hover:shadow-[var(--shadow-glow-pink)] transition-all"
-        >
-          Zur Startseite
+        <p className="label-mono mt-6 text-cream/60">Seite nicht gefunden / Page not found</p>
+        <Link href="/" className="btn-hard btn-acid mt-10">
+          ← Zur Startseite
         </Link>
       </div>
     </div>

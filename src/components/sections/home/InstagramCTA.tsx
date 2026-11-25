@@ -1,36 +1,49 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { siteConfig } from "@/lib/constants";
 import Container from "@/components/layout/Container";
 import InstagramIcon from "@/components/brand/InstagramIcon";
+import YouTubeIcon from "@/components/brand/YouTubeIcon";
+import CornerMarks from "@/components/retro/CornerMarks";
 
-export default function InstagramCTA() {
-  const t = useTranslations("home.instagram");
+export default async function InstagramCTA() {
+  const t = await getTranslations("home.instagram");
 
   return (
     <section className="relative py-20 md:py-24">
       <Container>
-        <motion.a
-          href={siteConfig.social.instagram}
-          target="_blank"
-          rel="noopener noreferrer"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="group relative block overflow-hidden rounded-[28px] border border-white/10 bg-gradient-to-br from-primary via-magenta to-violet p-10 md:p-16 text-center grain"
-        >
-          <InstagramIcon className="mx-auto mb-5 size-10 text-white" />
-          <h2 className="font-display text-4xl md:text-6xl font-extrabold tracking-tight text-white">
-            {t("title")}
-          </h2>
-          <p className="mx-auto mt-4 max-w-md text-white/80">{t("body")}</p>
-          <span className="mt-6 inline-block rounded-full bg-white px-6 py-3 font-display font-bold text-[#0c0518] group-hover:scale-105 transition-transform">
-            {t("cta")}
-          </span>
-        </motion.a>
+        <div className="bg-hazard p-2">
+          <div className="relative overflow-hidden bg-background px-6 py-14 text-center md:px-16 md:py-20">
+            <div className="absolute inset-0 bg-grid opacity-60" />
+            <CornerMarks className="m-4" />
+            <div className="relative z-10">
+              <p className="label-mono text-acid">[04] — Social</p>
+              <h2 className="mt-5 font-display text-[clamp(2.4rem,7vw,5.5rem)] leading-[0.9] text-cream">
+                {t("title")}
+              </h2>
+              <p className="mx-auto mt-5 max-w-md text-cream/70">{t("body")}</p>
+              <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
+                <a
+                  href={siteConfig.social.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-hard btn-acid"
+                >
+                  <InstagramIcon className="size-4" />
+                  {t("cta")}
+                </a>
+                <a
+                  href={siteConfig.social.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-hard btn-ghost"
+                >
+                  <YouTubeIcon className="size-4" />
+                  {t("youtube")}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </Container>
     </section>
   );

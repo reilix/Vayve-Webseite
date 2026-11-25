@@ -1,5 +1,8 @@
 import { setRequestLocale } from "next-intl/server";
 import Container from "@/components/layout/Container";
+import { localeStaticParams } from "@/i18n/static-params";
+
+export const generateStaticParams = localeStaticParams;
 
 export async function generateMetadata() {
   return {
@@ -19,7 +22,8 @@ export default async function AgbPage({
   return (
     <div className="pt-32 md:pt-40 pb-24">
       <Container>
-        <h1 className="font-display text-5xl md:text-7xl font-extrabold tracking-tight text-cream">
+        <p className="label-mono text-acid">[LG] — Legal</p>
+        <h1 className="mt-5 font-display text-[clamp(2.4rem,7vw,5.5rem)] leading-[0.9] text-cream break-words">
           AGB
         </h1>
         <p className="mt-4 text-muted">Stand: Juni 2026</p>

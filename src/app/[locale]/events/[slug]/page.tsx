@@ -13,7 +13,14 @@ import {
 import Container from "@/components/layout/Container";
 import WeeztixEmbed from "@/components/tickets/WeeztixEmbed";
 
-export const dynamic = "force-dynamic";
+// Inhalte aus der Datenbank: nicht beim Build vorrendern (dort gäbe es nur
+// die Seed-Daten der Build-DB), sondern beim ersten Aufruf rendern und dann
+// 5 Minuten aus dem Cache ausliefern. Admin-Änderungen leeren den Cache sofort
+// (revalidatePath in app/admin/actions.ts).
+export const revalidate = 300;
+export function generateStaticParams() {
+  return [];
+}
 
 export async function generateMetadata({
   params,
@@ -52,30 +59,30 @@ export default async function EventDetailPage({
     : [];
 
   return (
-    <article className="pt-16">
+    <article className="pt-16 md:pt-[72px]">
       {/* Cover — der Flyer wird immer vollständig gezeigt (kein Beschnitt).
           Dahinter liegt eine weichgezeichnete Kopie als Atmosphäre, die bei
           jedem Seitenverhältnis und jeder Bildschirmbreite den Raum füllt. */}
-      <section className="relative overflow-hidden grain">
+      <section className="scanlines relative overflow-hidden border-b border-line">
         {ev.cover_image ? (
           <Image
             src={ev.cover_image}
             alt=""
             aria-hidden
             fill
-            sizes="50vw"
+            sizes="128px"
             unoptimized={!ev.cover_image.startsWith("/")}
-            className="scale-125 object-cover opacity-50 blur-3xl"
+            className="scale-125 object-cover opacity-45 blur-3xl"
           />
         ) : (
-          <div className="absolute inset-0 bg-[radial-gradient(120%_120%_at_50%_0%,#3b1576_0%,#1a0b2e_50%,#0c0518_100%)]" />
+          <div className="absolute inset-0 bg-grid" />
         )}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#150a28]/30 via-[#150a28]/50 to-[#150a28]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
 
         <Container className="relative z-10 pt-8 pb-10 md:pt-12">
           <Link
             href="/events"
-            className="mb-6 inline-block text-sm font-semibold text-cream/70 hover:text-mint transition-colors"
+            className="label-mono mb-8 inline-block border border-line px-3 py-2 text-cream/70 transition-colors hover:border-acid hover:text-acid"
           >
             ← {t("back")}
           </Link>
@@ -89,14 +96,14 @@ export default async function EventDetailPage({
                 src={ev.cover_image}
                 alt={ev.title}
                 fetchPriority="high"
-                className="mx-auto block h-auto max-h-[70vh] w-auto max-w-full rounded-[22px] border border-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7)] md:mx-0"
+                className="mx-auto block h-auto max-h-[70vh] w-auto max-w-full border border-line shadow-[8px_8px_0_0_var(--color-acid)] md:mx-0"
               />
             )}
             <div className="min-w-0">
-              <p className="font-display text-sm font-bold uppercase tracking-wider text-mint">
-                {seriesLabel(ev.series, locale)}
+              <p className="label-mono text-acid">
+                [EV] — {seriesLabel(ev.series, locale)}
               </p>
-              <h1 className="font-display text-5xl md:text-7xl font-extrabold tracking-tight text-cream break-words">
+              <h1 className="mt-4 font-display text-[clamp(2.6rem,8vw,6.5rem)] leading-[0.88] text-cream break-words">
                 {ev.title}
               </h1>
             </div>
@@ -110,7 +117,7 @@ export default async function EventDetailPage({
             hinaus aufblähen und die Info-Card wegschieben. */}
         <div className="min-w-0">
           {past && (
-            <p className="mb-6 inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm text-cream/60">
+            <p className="label-mono mb-8 inline-block border border-dashed border-line px-4 py-2 text-cream/60">
               {t("past")}
             </p>
           )}
@@ -118,14 +125,12 @@ export default async function EventDetailPage({
           {/* Line-up steht oben — in der Szene relevanter als der Fließtext */}
           {lineup.length > 0 && (
             <div className="mb-10">
-              <h2 className="mb-4 font-display text-2xl font-extrabold text-cream">
-                {t("lineup")}
-              </h2>
+              <h2 className="label-mono mb-5 text-acid">▸ {t("lineup")}</h2>
               <div className="flex flex-wrap gap-2">
                 {lineup.map((act) => (
                   <span
                     key={act}
-                    className="rounded-full border border-white/15 bg-white/5 px-4 py-2 font-display font-semibold text-cream"
+                    className="border border-line bg-surface px-4 py-2.5 font-display text-lg text-cream md:text-xl"
                   >
                     {act}
                   </span>
@@ -138,8 +143,9 @@ export default async function EventDetailPage({
         </div>
 
         {/* Details-Card */}
-        <aside className="h-fit rounded-[22px] border border-white/10 bg-[#1a0f33] p-6 lg:sticky lg:top-28">
-          <dl className="space-y-5">
+        <aside className="h-fit border border-line bg-surface lg:sticky lg:top-28">
+          <p className="label-mono border-b border-line px-5 py-3 text-cream/50">[ {t("details")} ]</p>
+          <dl className="space-y-5 p-5">
             <Detail label={t("when")}>
               {formatEventDate(ev.starts_at, locale)}
               <span className="block text-cream/60">
@@ -157,11 +163,11 @@ export default async function EventDetailPage({
             {ev.price_info && <Detail label={t("price")}>{ev.price_info}</Detail>}
           </dl>
 
-          <div className="mt-6">
+          <div className="border-t border-line p-5">
             {ev.ticket_status === "on_sale" && ev.ticket_url ? (
               <a
                 href="#tickets"
-                className="block rounded-full bg-primary px-6 py-3.5 text-center font-display font-bold text-white hover:shadow-[var(--shadow-glow-pink)] transition-all"
+                className="btn-hard btn-acid w-full"
               >
                 {ticketStatusLabel("on_sale", locale)} ↓
               </a>
@@ -169,8 +175,8 @@ export default async function EventDetailPage({
               <span
                 className={
                   ev.ticket_status === "free"
-                    ? "block rounded-full bg-acid px-6 py-3.5 text-center font-display font-bold text-[#0c0518]"
-                    : "block rounded-full bg-white/10 px-6 py-3.5 text-center font-display font-bold text-cream/60"
+                    ? "btn-hard w-full border-mint bg-mint text-ink"
+                    : "btn-hard w-full border-line text-cream/60"
                 }
               >
                 {ticketStatusLabel(ev.ticket_status, locale)}
@@ -182,9 +188,10 @@ export default async function EventDetailPage({
 
       {/* Tickets direkt auf der Event-Seite kaufen (Weeztix-iframe, mit fbclid) */}
       {ev.ticket_status === "on_sale" && ev.ticket_url && (
-        <section id="tickets" className="scroll-mt-24 border-t border-white/10 bg-[#120826]">
+        <section id="tickets" className="scroll-mt-24 border-t border-line bg-surface">
           <Container className="py-16">
-            <h2 className="mb-8 font-display text-3xl md:text-4xl font-extrabold text-cream">
+            <p className="label-mono text-acid">[TX] — Weeztix</p>
+            <h2 className="mb-8 mt-4 font-display text-[clamp(2rem,5vw,3.5rem)] leading-[0.9] text-cream">
               Tickets
             </h2>
             <WeeztixEmbed url={ev.ticket_url} />
@@ -221,8 +228,8 @@ function EventDescription({ html }: { html: string }) {
     <div
       className={
         base +
-        " [&_iframe]:my-4 [&_iframe]:block [&_iframe]:w-full [&_iframe]:max-w-full [&_iframe]:rounded-xl" +
-        " [&_a]:text-mint [&_a]:underline [&_a]:decoration-mint/40 hover:[&_a]:decoration-mint"
+        " [&_iframe]:my-4 [&_iframe]:block [&_iframe]:w-full [&_iframe]:max-w-full [&_iframe]:border [&_iframe]:border-line" +
+        " [&_a]:text-acid [&_a]:underline [&_a]:decoration-acid/40 hover:[&_a]:decoration-acid"
       }
       dangerouslySetInnerHTML={{ __html: html }}
     />
@@ -232,7 +239,7 @@ function EventDescription({ html }: { html: string }) {
 function Detail({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <dt className="font-display text-xs font-bold uppercase tracking-wider text-mint">
+      <dt className="label-mono text-acid">
         {label}
       </dt>
       <dd className="mt-1 font-semibold text-cream">{children}</dd>

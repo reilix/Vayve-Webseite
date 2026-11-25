@@ -9,8 +9,8 @@ import {
 } from "@/app/[locale]/kontakt/actions";
 
 const field =
-  "w-full rounded-[14px] bg-[#1a0f33] border border-white/10 px-4 py-3 text-cream placeholder:text-muted/50 outline-none focus:border-primary transition-colors";
-const label = "block text-xs font-semibold uppercase tracking-wider text-muted mb-1.5";
+  "w-full border border-line bg-background px-4 py-3 text-cream placeholder:text-muted/50 outline-none transition-colors focus:border-acid";
+const label = "label-mono mb-2 block text-muted";
 
 export default function ContactForm() {
   const t = useTranslations("contact.form");
@@ -21,9 +21,9 @@ export default function ContactForm() {
 
   if (state.ok) {
     return (
-      <div className="rounded-[22px] border border-mint/30 bg-mint/10 px-6 py-12 text-center">
-        <CheckCircle2 className="mx-auto mb-4 size-12 text-mint" />
-        <h3 className="font-display text-2xl font-extrabold text-cream">
+      <div className="border border-acid/50 bg-acid/10 px-6 py-12 text-center">
+        <CheckCircle2 className="mx-auto mb-4 size-12 text-acid" strokeWidth={1.5} />
+        <h3 className="font-display text-3xl text-cream">
           {t("successTitle")}
         </h3>
         <p className="mt-2 text-cream/70">{t("successBody")}</p>
@@ -34,7 +34,7 @@ export default function ContactForm() {
   return (
     <form action={formAction} className="space-y-5">
       {state.error && (
-        <p className="rounded-[14px] border border-error/40 bg-error/10 px-4 py-3 text-sm text-error">
+        <p className="border border-error/40 bg-error/10 px-4 py-3 text-sm text-error">
           {t("error")}
         </p>
       )}
@@ -59,7 +59,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={pending}
-        className="rounded-full bg-primary px-7 py-3.5 font-display font-bold text-white hover:shadow-[var(--shadow-glow-pink)] disabled:opacity-50 transition-all cursor-pointer"
+        className="btn-hard btn-acid cursor-pointer disabled:opacity-50"
       >
         {pending ? t("sending") : t("send")}
       </button>

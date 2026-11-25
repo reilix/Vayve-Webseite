@@ -2,6 +2,7 @@
   "nav": {
     "home": "Start",
     "events": "Events",
+    "sets": "Sets",
     "about": "Über uns",
     "gallery": "Galerie",
     "contact": "Kontakt",
@@ -24,13 +25,25 @@
       "subtitle": "VAYVE bringt die elektronische Szene zusammen — auf Open Airs, Raves und überall dazwischen.",
       "ctaEvents": "Kommende Events",
       "ctaTickets": "Tickets",
-      "scroll": "Scroll"
+      "scroll": "Scroll",
+      "status": "Live aus Hamburg"
     },
     "upcoming": {
       "eyebrow": "Demnächst",
       "title": "Kommende Events",
       "viewAll": "Alle Events",
       "empty": "Bald geht's weiter — folge uns auf Instagram."
+    },
+    "sets": {
+      "eyebrow": "Live Sets",
+      "title": "Neueste Sets",
+      "subtitle": "Mitgeschnitten auf unseren Floors. Drück auf Play und hol dir den Abend zurück.",
+      "viewAll": "Alle Sets",
+      "channel": "YouTube-Kanal",
+      "play": "Set abspielen",
+      "nowPlaying": "Läuft",
+      "queue": "Weitere Sets",
+      "consent": "Erst beim Abspielen wird YouTube geladen (Datenschutz)."
     },
     "vibe": {
       "eyebrow": "Der Vibe",
@@ -41,7 +54,8 @@
     "instagram": {
       "title": "Folge dem Vibe",
       "body": "Alle Updates, Line-ups und Good Vibes zuerst auf Instagram.",
-      "cta": "@vayve.germany"
+      "cta": "@vayve.germany",
+      "youtube": "Sets auf YouTube"
     }
   },
   "tickets": {
@@ -62,6 +76,13 @@
     "pastTitle": "Vorbei",
     "empty": "Aktuell sind keine Events geplant. Schau bald wieder vorbei."
   },
+  "sets": {
+    "hero": {
+      "eyebrow": "Live Sets",
+      "title": "Alle Sets",
+      "subtitle": "Die Mitschnitte unserer Nächte, direkt vom YouTube-Kanal."
+    }
+  },
   "eventDetail": {
     "back": "Alle Events",
     "when": "Wann",
@@ -71,7 +92,8 @@
     "genres": "Sound",
     "price": "Eintritt",
     "past": "Dieses Event ist vorbei.",
-    "moreEvents": "Weitere Events"
+    "moreEvents": "Weitere Events",
+    "details": "Details"
   },
   "about": {
     "hero": {
