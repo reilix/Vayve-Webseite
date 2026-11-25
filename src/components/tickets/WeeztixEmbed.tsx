@@ -35,13 +35,41 @@ function buildSrc(base: string): string {
   }
 }
 
-export default function WeeztixEmbed({ url }: { url?: string }) {
-  const base = url ?? siteConfig.ticketUrl;
+/** Nur Weeztix-URLs als Embed-Ziel zulassen. */
+function safeWeeztixUrl(to: string | null | undefined): string | undefined {
+  if (!to) return undefined;
+  try {
+    const u = new URL(to);
+    return u.protocol === "https:" && u.hostname.endsWith("weeztix.com")
+      ? to
+      : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+/**
+ * @param url             fester Shop-Link (z. B. vom Event)
+ * @param allowQueryOverride  `?to=<weeztix-url>` aus der Adresszeile übernehmen.
+ *   Wird im Browser gelesen, damit die Ticket-Seite statisch bleibt.
+ */
+export default function WeeztixEmbed({
+  url,
+  allowQueryOverride = false,
+}: {
+  url?: string;
+  allowQueryOverride?: boolean;
+}) {
   const [src, setSrc] = useState<string | null>(null);
 
   useEffect(() => {
+    let base = url ?? siteConfig.ticketUrl;
+    if (allowQueryOverride) {
+      const to = safeWeeztixUrl(new URLSearchParams(window.location.search).get("to"));
+      if (to) base = to;
+    }
     setSrc(buildSrc(base));
-  }, [base]);
+  }, [url, allowQueryOverride]);
 
   return (
     <div className="w-full">
@@ -49,21 +77,21 @@ export default function WeeztixEmbed({ url }: { url?: string }) {
         <iframe
           src={src}
           title="VAYVE Tickets — Weeztix"
-          className="w-full h-[calc(100vh-7rem)] min-h-[640px] rounded-[18px] border border-white/10 bg-white"
+          className="w-full h-[calc(100vh-7rem)] min-h-[640px] border border-line bg-white"
           loading="lazy"
           allow="payment"
           referrerPolicy="no-referrer-when-downgrade"
         />
       ) : (
-        <div className="h-[640px] animate-pulse rounded-[18px] border border-white/10 bg-[#1a0f33]" />
+        <div className="h-[640px] animate-pulse border border-line bg-surface" />
       )}
       {src && (
-        <p className="mt-4 text-center text-sm text-muted">
+        <p className="mt-4 text-center font-mono text-xs uppercase tracking-[0.15em] text-muted">
           <a
             href={src}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-mint hover:text-cream transition-colors"
+            className="text-acid hover:text-cream transition-colors"
           >
             ↗ Weeztix
           </a>

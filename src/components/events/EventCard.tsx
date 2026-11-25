@@ -6,30 +6,39 @@ import { formatEventDateShort, isPast } from "@/lib/datetime";
 import { cn } from "@/lib/utils";
 
 const STATUS_TONE: Record<string, string> = {
-  on_sale: "bg-mint text-[#0c0518]",
-  free: "bg-acid text-[#0c0518]",
-  sold_out: "bg-white/15 text-cream/70",
-  soon: "bg-white/15 text-cream/70",
+  on_sale: "bg-acid text-ink",
+  free: "bg-mint text-ink",
+  sold_out: "bg-cream/15 text-cream/70",
+  soon: "bg-cream/15 text-cream/70",
 };
 
 export default function EventCard({
   event,
   locale,
+  index,
 }: {
   event: EventRecord;
   locale: string;
+  /** Laufende Nummer auf der Karte (#01, #02 …) */
+  index?: number;
 }) {
   const past = isPast(event.starts_at);
+  const external = !event.cover_image?.startsWith("/");
 
   return (
     <Link
       href={{ pathname: "/events/[slug]", params: { slug: event.slug } }}
-      className="group relative block overflow-hidden rounded-[22px] border border-white/10 bg-[#1a0f33]"
+      className="group relative flex flex-col border border-line bg-surface transition-[transform,box-shadow,border-color] duration-150 hover:-translate-x-1 hover:-translate-y-1 hover:border-acid hover:shadow-[var(--shadow-hard-acid)]"
     >
-      {/* Flyer-Fläche im 4:5-Format. Der Flyer wird nie beschnitten
-          (object-contain); freie Ränder bei abweichenden Formaten füllt eine
-          weichgezeichnete Kopie des Flyers. */}
-      <div className="relative aspect-[4/5] w-full overflow-hidden">
+      {/* Kopfzeile */}
+      <div className="label-mono flex items-center justify-between gap-3 border-b border-line px-3 py-2.5 text-cream/60">
+        <span>{index ? `#${String(index).padStart(2, "0")}` : "VAYVE"}</span>
+        <span className="text-cream">{formatEventDateShort(event.starts_at, locale)}</span>
+      </div>
+
+      {/* Flyer im 4:5-Format, nie beschnitten (object-contain). Freie Ränder
+          füllt eine weichgezeichnete Mini-Kopie — 64 px reichen dafür. */}
+      <div className="relative aspect-[4/5] w-full overflow-hidden bg-base">
         {event.cover_image ? (
           <>
             <Image
@@ -37,62 +46,54 @@ export default function EventCard({
               alt=""
               aria-hidden
               fill
-              sizes="(max-width: 768px) 50vw, 20vw"
-              unoptimized={!event.cover_image.startsWith("/")}
-              className="scale-125 object-cover opacity-70 blur-2xl"
+              sizes="64px"
+              unoptimized={external}
+              className="scale-125 object-cover opacity-60 blur-2xl"
             />
             <Image
               src={event.cover_image}
               alt={event.title}
               fill
-              sizes="(max-width: 768px) 100vw, 33vw"
-              unoptimized={!event.cover_image.startsWith("/")}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              unoptimized={external}
               className={cn(
                 "object-contain transition-transform duration-500 group-hover:scale-[1.03]",
-                past && "grayscale-[0.4]",
+                past && "grayscale-[0.5]",
               )}
             />
           </>
         ) : (
-          <div className="absolute inset-0 grain bg-[radial-gradient(120%_120%_at_30%_0%,#7c3aed_0%,#6d28d9_35%,#150a28_100%)]">
-            <span className="font-display absolute inset-0 flex items-center justify-center text-5xl font-extrabold tracking-tight text-white/10">
+          <div className="absolute inset-0 bg-grid">
+            <span className="font-display absolute inset-0 flex items-center justify-center text-5xl text-cream/10">
               VAYVE
             </span>
           </div>
         )}
 
-        {/* Datum-Chip */}
-        <span className="absolute left-3 top-3 rounded-full bg-[#0c0518]/80 px-3 py-1 font-display text-sm font-bold text-cream backdrop-blur">
-          {formatEventDateShort(event.starts_at, locale)}
-        </span>
-
-        {/* Status-Chip */}
         {!past && (
           <span
             className={cn(
-              "absolute right-3 top-3 rounded-full px-3 py-1 text-xs font-bold",
+              "label-mono absolute right-0 top-0 px-2.5 py-1.5 font-bold",
               STATUS_TONE[event.ticket_status] ?? STATUS_TONE.soon,
             )}
           >
             {ticketStatusLabel(event.ticket_status, locale)}
           </span>
         )}
-
       </div>
 
       {/* Inhalt unter dem Flyer — überdeckt keine Flyer-Texte */}
-      <div className="p-4">
-        <p className="font-display text-xs font-bold uppercase tracking-wider text-mint">
-          {seriesLabel(event.series, locale)}
-        </p>
-        <h3 className="font-display text-2xl font-extrabold leading-tight text-cream">
-          {event.title}
-        </h3>
+      <div className="flex flex-1 flex-col border-t border-line p-4">
+        <p className="label-mono text-acid">{seriesLabel(event.series, locale)}</p>
+        <h3 className="mt-2 font-display text-2xl leading-[0.95] text-cream break-words">{event.title}</h3>
         {(event.location_name || event.city) && (
-          <p className="mt-1 text-sm text-cream/60">
-            {[event.location_name, event.city].filter(Boolean).join(" · ")}
+          <p className="label-mono mt-3 text-cream/50">
+            {[event.location_name, event.city].filter(Boolean).join(" / ")}
           </p>
         )}
+        <span className="label-mono mt-auto pt-5 text-cream/40 transition-colors group-hover:text-acid">
+          → Details
+        </span>
       </div>
     </Link>
   );

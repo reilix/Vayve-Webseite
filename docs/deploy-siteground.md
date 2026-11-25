@@ -46,3 +46,34 @@ muss noch da sein.
 1. Änderung auf `main` mergen.
 2. Action „SiteGround-Paket bauen“ läuft (GitHub → Actions), ca. 2–3 Minuten.
 3. Bei SiteGround neu deployen (oder automatisch, falls der Branch-Webhook aktiv ist).
+
+## Hohe CPU-Sekunden im Site-Tools-Diagramm
+
+Die App selbst braucht im Leerlauf keine CPU und pro Seitenaufruf nur wenige
+Millisekunden (gemessen mit dem fertigen Paket). Die Seiten mit Event-Inhalten
+werden einmal gerendert und dann bis zu 5 Minuten aus dem Cache ausgeliefert;
+weil die Seite keine Cookies mehr setzt, kann auch der Proxy-Cache von
+SiteGround sie direkt beantworten. Zeigt das Diagramm trotzdem Tausende
+CPU-Sekunden pro Stunde, liegt es fast immer an Prozessen, die auf dem Server
+hängen geblieben sind.
+
+Per SSH prüfen (Site Tools → Devs → SSH-Schlüssel):
+
+```bash
+ps -u "$(whoami)" -o pid,ppid,etime,pcpu,rss,args --sort=-pcpu | head -30
+```
+
+Worauf achten:
+
+- Mehr als **ein** `next-server`- bzw. `node server.js`-Prozess: alte Instanzen
+  früherer Deploys. Mit `kill <pid>` beenden, danach die App in Site Tools
+  neu starten.
+- Prozesse von `next build`, `turbopack`, `postcss` oder `npm` mit langer
+  Laufzeit (`etime` in Tagen): Reste der abgebrochenen Builds direkt auf
+  SiteGround. Beenden.
+- Ein einzelner `next-server` mit dauerhaft hohem `pcpu`: Access-Log auf
+  Bot-Fluten prüfen (Site Tools → Statistiken → Access-Log).
+
+Nach Admin-Änderungen zeigt der Proxy-Cache die alte Seite bis zu 5 Minuten.
+Sofort sichtbar wird sie über Site Tools → Speed → Caching → Dynamic Cache →
+Cache leeren.

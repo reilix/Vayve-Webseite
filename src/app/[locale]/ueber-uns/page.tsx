@@ -4,6 +4,10 @@ import { Link } from "@/i18n/navigation";
 import { Music2, Users, Sparkles } from "lucide-react";
 import Container from "@/components/layout/Container";
 import ScrollReveal from "@/components/animation/ScrollReveal";
+import PageHero from "@/components/retro/PageHero";
+import { localeStaticParams } from "@/i18n/static-params";
+
+export const generateStaticParams = localeStaticParams;
 
 export async function generateMetadata({
   params,
@@ -31,53 +35,47 @@ export default async function AboutPage({
   ] as const;
 
   return (
-    <div className="pt-28 md:pt-36">
-      {/* Hero */}
-      <section className="relative overflow-hidden pb-16">
-        <div className="glow-orb left-[-8%] top-[-10%] size-[36vw] bg-violet/40" />
-        <div className="glow-orb right-[-6%] top-[20%] size-[30vw] bg-mint/20" />
-        <Container className="relative z-10 max-w-3xl">
-          <span className="font-display text-xs font-bold uppercase tracking-[0.25em] text-mint">
-            {t("hero.eyebrow")}
-          </span>
-          <h1 className="mt-3 font-display text-5xl md:text-7xl font-extrabold tracking-tight text-cream">
-            {t("hero.title")}
-          </h1>
-          <p className="mt-5 text-xl text-cream/70">{t("hero.subtitle")}</p>
-        </Container>
-      </section>
+    <div>
+      <PageHero code="AB" eyebrow={t("hero.eyebrow")} title={t("hero.title")} subtitle={t("hero.subtitle")} />
 
       {/* Story */}
-      <section className="py-12">
-        <Container className="max-w-3xl space-y-6">
-          <ScrollReveal>
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold text-cream">
-              {t("story.title")}
-            </h2>
-          </ScrollReveal>
-          <ScrollReveal delay={0.05}>
-            <p className="text-lg leading-relaxed text-cream/75">{t("story.body1")}</p>
-          </ScrollReveal>
-          <ScrollReveal delay={0.1}>
-            <p className="text-lg leading-relaxed text-cream/75">{t("story.body2")}</p>
-          </ScrollReveal>
+      <section className="py-16 md:py-24">
+        <Container className="grid gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <p className="label-mono text-acid">[01] — Story</p>
+          </div>
+          <div className="space-y-6 lg:col-span-8">
+            <ScrollReveal>
+              <h2 className="font-display text-[clamp(2rem,5vw,3.75rem)] leading-[0.9] text-cream">
+                {t("story.title")}
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal delay={0.05}>
+              <p className="text-lg leading-relaxed text-cream/75">{t("story.body1")}</p>
+            </ScrollReveal>
+            <ScrollReveal delay={0.1}>
+              <p className="text-lg leading-relaxed text-cream/75">{t("story.body2")}</p>
+            </ScrollReveal>
+          </div>
         </Container>
       </section>
 
       {/* Values */}
-      <section className="py-16">
+      <section className="border-y border-line bg-surface py-16 md:py-20">
         <Container>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <p className="label-mono mb-10 text-acid">[02] — Values</p>
+          <div className="grid grid-cols-1 border-l border-t border-line md:grid-cols-3">
             {values.map(({ key, Icon }, i) => (
-              <ScrollReveal key={key} delay={i * 0.08}>
-                <div className="h-full rounded-[22px] border border-white/10 bg-[#1a0f33] p-8">
-                  <Icon className="mb-5 size-9 text-primary" />
-                  <h3 className="font-display text-2xl font-extrabold text-cream">
+              <ScrollReveal key={key} delay={i * 0.08} className="border-b border-r border-line">
+                <div className="h-full p-8">
+                  <div className="flex items-center justify-between">
+                    <Icon className="size-8 text-acid" strokeWidth={1.5} />
+                    <span className="label-mono text-cream/35">0{i + 1}</span>
+                  </div>
+                  <h3 className="mt-8 font-display text-3xl leading-none text-cream">
                     {t(`values.${key}.title`)}
                   </h3>
-                  <p className="mt-3 leading-relaxed text-cream/70">
-                    {t(`values.${key}.body`)}
-                  </p>
+                  <p className="mt-4 leading-relaxed text-cream/70">{t(`values.${key}.body`)}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -88,17 +86,19 @@ export default async function AboutPage({
       {/* CTA */}
       <section className="py-20">
         <Container>
-          <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-gradient-to-br from-violet via-magenta to-primary p-12 text-center grain">
-            <h2 className="font-display text-4xl md:text-5xl font-extrabold text-white">
-              {t("cta.title")}
-            </h2>
-            <p className="mx-auto mt-4 max-w-md text-white/80">{t("cta.body")}</p>
-            <Link
-              href="/events"
-              className="mt-7 inline-block rounded-full bg-white px-7 py-3.5 font-display font-bold text-[#0c0518] hover:scale-105 transition-transform"
-            >
-              {t("cta.button")}
-            </Link>
+          <div className="bg-hazard p-2">
+            <div className="relative overflow-hidden bg-background p-10 text-center md:p-16">
+              <div className="absolute inset-0 bg-grid opacity-60" />
+              <div className="relative z-10">
+                <h2 className="font-display text-[clamp(2.2rem,6vw,4.5rem)] leading-[0.9] text-cream">
+                  {t("cta.title")}
+                </h2>
+                <p className="mx-auto mt-4 max-w-md text-cream/70">{t("cta.body")}</p>
+                <Link href="/events" className="btn-hard btn-acid mt-8">
+                  {t("cta.button")} →
+                </Link>
+              </div>
+            </div>
           </div>
         </Container>
       </section>

@@ -25,7 +25,7 @@ export default function LanguageSwitcher() {
   return (
     <div
       className={cn(
-        "flex items-center rounded-full bg-white/10 p-0.5 text-sm font-display font-semibold",
+        "label-mono flex items-center border border-line",
         pending && "opacity-60",
       )}
     >
@@ -34,8 +34,8 @@ export default function LanguageSwitcher() {
           key={l}
           onClick={() => switchLocale(l)}
           className={cn(
-            "px-3 py-1 rounded-full transition-all duration-200 cursor-pointer uppercase",
-            locale === l ? "bg-primary text-white" : "text-cream/60 hover:text-cream",
+            "cursor-pointer px-2.5 py-1.5 uppercase transition-colors duration-150",
+            locale === l ? "bg-cream text-ink" : "text-cream/60 hover:text-cream",
           )}
         >
           {l}

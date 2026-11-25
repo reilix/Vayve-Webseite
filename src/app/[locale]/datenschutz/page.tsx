@@ -1,5 +1,8 @@
 import { setRequestLocale } from "next-intl/server";
 import Container from "@/components/layout/Container";
+import { localeStaticParams } from "@/i18n/static-params";
+
+export const generateStaticParams = localeStaticParams;
 
 export async function generateMetadata() {
   return {
@@ -19,7 +22,8 @@ export default async function DatenschutzPage({
   return (
     <div className="pt-32 md:pt-40 pb-24">
       <Container>
-        <h1 className="font-display text-5xl md:text-7xl font-extrabold tracking-tight text-cream">
+        <p className="label-mono text-acid">[LG] — Legal</p>
+        <h1 className="mt-5 font-display text-[clamp(2.4rem,7vw,5.5rem)] leading-[0.9] text-cream break-words">
           Datenschutz
         </h1>
         <div className="mt-12 max-w-3xl prose-styles">
@@ -36,7 +40,8 @@ export default async function DatenschutzPage({
 
           <h2>2. Hosting</h2>
           <p>
-            Diese Website wird auf einem selbst betriebenen Server gehostet. Beim
+            Diese Website wird bei SiteGround (SiteGround Spain S.L., Calle Prim 19,
+            28004 Madrid, Spanien) gehostet. Beim
             Aufruf der Website werden technisch notwendige Server-Logdaten
             (z. B. IP-Adresse, Datum und Uhrzeit des Zugriffs, abgerufene Seite)
             verarbeitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO
@@ -62,7 +67,26 @@ export default async function DatenschutzPage({
             eingesetzt.
           </p>
 
-          <h2>5. Deine Rechte</h2>
+          <h2>5. YouTube-Videos</h2>
+          <p>
+            Auf unserer Website zeigen wir Mitschnitte unserer Events aus unserem
+            YouTube-Kanal. Die Vorschaubilder liefern wir über unseren eigenen
+            Server aus; beim Laden der Seite wird keine Verbindung zu YouTube
+            aufgebaut. Erst wenn du ein Video aktiv startest, wird der Player von
+            <strong> YouTube</strong> (Google Ireland Limited, Gordon House, Barrow
+            Street, Dublin 4, Irland) im erweiterten Datenschutzmodus
+            (youtube-nocookie.com) geladen. Dabei werden u. a. deine IP-Adresse und
+            Informationen über die Wiedergabe an YouTube übertragen; eine
+            Übermittlung in die USA ist möglich. Rechtsgrundlage ist deine
+            Einwilligung durch das Starten des Videos (Art. 6 Abs. 1 lit. a DSGVO).
+            Weitere Informationen findest du in der Datenschutzerklärung von Google:{" "}
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+              policies.google.com/privacy
+            </a>
+            .
+          </p>
+
+          <h2>6. Deine Rechte</h2>
           <p>
             Du hast jederzeit das Recht auf Auskunft, Berichtigung, Löschung,
             Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch.

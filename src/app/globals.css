@@ -1,26 +1,34 @@
 @import "tailwindcss";
 
+/*
+ * VAYVE — Retro/Technoid
+ * 90s-Rave-Flyer trifft Studio-Hardware: tiefes Schwarz, Raster, harte Kanten,
+ * Acid-Grün + Pink als Signalfarben, Monospace für alles Technische.
+ */
+
 @theme {
   /* === Flächen === */
-  --color-background: #150a28;
-  --color-base: #0c0518;
-  --color-surface: #20123b;
-  --color-surface-2: #2a1a4a;
-  --color-foreground: #fbf7ff;
-  --color-cream: #fbf7ff;
-  --color-muted: #b9a8d6;
-  --color-border: rgba(255, 255, 255, 0.1);
+  --color-background: #08070b;
+  --color-base: #040306;
+  --color-surface: #100e15;
+  --color-surface-2: #17141f;
+  --color-foreground: #f1ede4;
+  --color-cream: #f1ede4; /* Papierweiß statt reinem Weiß */
+  --color-muted: #a29cae;
+  --color-border: rgba(241, 237, 228, 0.14);
+  --color-line: rgba(241, 237, 228, 0.14);
+  --color-ink: #08070b;
 
-  /* === Brand (Logo-Welt) === */
-  --color-primary: #ec4899; /* Pink — Haupt-CTA */
-  --color-primary-dark: #db2777;
-  --color-violet: #6d28d9; /* Logo-Lila */
+  /* === Brand / Signal === */
+  --color-acid: #d8ff3e; /* Haupt-Akzent */
+  --color-primary: #ff2e9a; /* Pink — nah am Logo-Magenta */
+  --color-primary-dark: #d81b7d;
+  --color-violet: #6d28d9;
   --color-violet-bright: #7c3aed;
   --color-violet-400: #a78bfa;
   --color-violet-light: #a78bfa;
-  --color-magenta: #c026a8;
+  --color-magenta: #c1118a; /* Logo */
   --color-mint: #5eead4; /* Logo-Türkis */
-  --color-acid: #d8ff3e; /* Neon-Akzent */
 
   /* === Semantik === */
   --color-success: #34d399;
@@ -28,42 +36,46 @@
   --color-error: #fb7185;
 
   /* === Fonts === */
-  --font-display: var(--font-syne), system-ui, sans-serif;
-  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-archivo), "Arial Black", system-ui, sans-serif;
+  --font-body: var(--font-grotesk), system-ui, sans-serif;
+  --font-mono: var(--font-spacemono), ui-monospace, "SFMono-Regular", monospace;
 
-  /* === Radii === */
-  --radius-button: 9999px;
-  --radius-card: 22px;
-  --radius-input: 14px;
-  --radius-image: 18px;
+  /* === Radii: harte Kanten === */
+  --radius-button: 0px;
+  --radius-card: 0px;
+  --radius-input: 0px;
+  --radius-image: 0px;
 }
 
 :root {
-  --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.35);
-  --shadow-glow-pink: 0 0 40px rgba(236, 72, 153, 0.45);
+  --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.5);
+  --shadow-glow-pink: 0 0 40px rgba(255, 46, 154, 0.45);
   --shadow-glow-mint: 0 0 40px rgba(94, 234, 212, 0.35);
   --shadow-glow-violet: 0 0 48px rgba(124, 58, 237, 0.45);
+  --shadow-hard-acid: 5px 5px 0 0 var(--color-acid);
+  --shadow-hard-pink: 5px 5px 0 0 var(--color-primary);
 }
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
-  background: #150a28;
-  color: #fbf7ff;
+  background: var(--color-background);
+  color: var(--color-cream);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background-color: var(--color-primary);
-  color: #fff;
+  background-color: var(--color-acid);
+  color: var(--color-ink);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-mint);
+  outline: 2px solid var(--color-acid);
   outline-offset: 2px;
 }
 
@@ -78,13 +90,238 @@ body {
   }
 }
 
-/* === Display-Typo === */
+/* === Typo === */
+@layer components {
+
+/* Extended Black, Versalien — die Flyer-Headline */
 .font-display {
   font-family: var(--font-display);
-  letter-spacing: -0.02em;
+  font-stretch: 125%;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
 }
 
-/* === Marquee === */
+/* Kleine technische Labels: [01] — DEMNÄCHST */
+.label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+}
+
+/* Kontur-Schrift für Füll-Wörter in großen Headlines */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-cream);
+}
+
+/* RGB-Versatz wie auf einem schlecht justierten Röhrenmonitor */
+.text-rgb {
+  text-shadow:
+    -0.04em 0 0 rgba(255, 46, 154, 0.85),
+    0.04em 0 0 rgba(94, 234, 212, 0.85);
+}
+
+@keyframes glitch {
+  0%,
+  92%,
+  100% {
+    transform: translate(0, 0);
+    clip-path: inset(0 0 0 0);
+  }
+  93% {
+    transform: translate(-3px, 1px);
+    clip-path: inset(10% 0 55% 0);
+  }
+  95% {
+    transform: translate(3px, -1px);
+    clip-path: inset(60% 0 8% 0);
+  }
+  97% {
+    transform: translate(-1px, 0);
+    clip-path: inset(30% 0 40% 0);
+  }
+}
+.animate-glitch {
+  animation: glitch 5.5s steps(1, end) infinite;
+}
+
+/* === Hintergründe === */
+
+/* Millimeter-Raster */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(241, 237, 228, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(241, 237, 228, 0.055) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Punktraster wie auf Lautsprecher-Grills */
+.bg-dots {
+  background-image: radial-gradient(rgba(241, 237, 228, 0.12) 1px, transparent 1.2px);
+  background-size: 14px 14px;
+}
+
+/* Diagonale Warnstreifen */
+.bg-hazard {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--color-acid) 0 14px,
+    var(--color-ink) 14px 28px
+  );
+}
+
+/* Perspektivischer Retro-Boden (Hero) — bewegt sich per transform,
+   damit die Animation auf der GPU läuft. */
+.retro-floor {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  bottom: 0;
+  height: 55%;
+  perspective: 420px;
+  overflow: hidden;
+  mask-image: linear-gradient(to top, black 10%, transparent 95%);
+  pointer-events: none;
+}
+.retro-floor::before {
+  content: "";
+  position: absolute;
+  inset: -100% 0 0 0;
+  transform-origin: 50% 100%;
+  transform: rotateX(62deg);
+  background-image:
+    linear-gradient(to right, rgba(255, 46, 154, 0.45) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 46, 154, 0.45) 1px, transparent 1px);
+  background-size: 64px 64px;
+  animation: floor-move 2.4s linear infinite;
+}
+@keyframes floor-move {
+  from {
+    transform: rotateX(62deg) translateY(0);
+  }
+  to {
+    transform: rotateX(62deg) translateY(64px);
+  }
+}
+
+/* Scanlines über einem Container */
+/* Container braucht relative/absolute (Tailwind) */
+.scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.28) 0px,
+    rgba(0, 0, 0, 0.28) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* Film-Grain auf .grain-Containern */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.14;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Globales Grain — Fotokopie-Optik */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* === Bauteile === */
+
+@layer components {
+/* Rechteckiger Button mit hartem Versatz-Schatten */
+.btn-hard {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border: 1.5px solid currentColor;
+  padding: 0.95rem 1.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    background-color 0.12s ease,
+    color 0.12s ease;
+}
+.btn-hard:hover {
+  transform: translate(3px, 3px);
+}
+.btn-acid {
+  background: var(--color-acid);
+  border-color: var(--color-acid);
+  color: var(--color-ink);
+  box-shadow: 5px 5px 0 0 var(--color-primary);
+}
+.btn-acid:hover {
+  box-shadow: 2px 2px 0 0 var(--color-primary);
+}
+.btn-ghost {
+  color: var(--color-cream);
+  box-shadow: 5px 5px 0 0 rgba(241, 237, 228, 0.25);
+}
+.btn-ghost:hover {
+  background: var(--color-cream);
+  border-color: var(--color-cream);
+  color: var(--color-ink);
+  box-shadow: 2px 2px 0 0 rgba(241, 237, 228, 0.25);
+}
+
+}
+
+/* Equalizer-Balken (Hero) */
+@keyframes eq {
+  0%,
+  100% {
+    transform: scaleY(0.15);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+.eq-bar {
+  transform-origin: bottom;
+  animation: eq 1.1s ease-in-out infinite;
+}
+
+/* Blinkender Cursor / REC-Punkt */
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+.animate-blink {
+  animation: blink 1.1s steps(1, end) infinite;
+}
+
+/* === Marquee / Ticker === */
 @keyframes marquee {
   0% {
     transform: translateX(0);
@@ -97,47 +334,19 @@ body {
   animation: marquee 28s linear infinite;
 }
 
-/* === Film-Grain Overlay (auf .grain-Containern) === */
-.grain::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.12;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* Subtiles globales Grain */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 60;
-  opacity: 0.045;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* === Glow-Orbs === */
+/* === Glow-Orbs (dezent, als Licht im Raster) === */
 .glow-orb {
   position: absolute;
   border-radius: 9999px;
-  filter: blur(80px);
-  opacity: 0.5;
+  filter: blur(90px);
+  opacity: 0.35;
   pointer-events: none;
   z-index: 0;
 }
 
-/* === Text-Gradient === */
+/* === Text-Gradient (Legacy, z. B. 404) === */
 .text-gradient {
-  background: linear-gradient(
-    100deg,
-    var(--color-primary),
-    var(--color-violet-400) 55%,
-    var(--color-mint)
-  );
+  background: linear-gradient(100deg, var(--color-acid), var(--color-mint) 50%, var(--color-primary));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -146,18 +355,24 @@ body::after {
 /* === Prose (Recht) === */
 .prose-styles h2 {
   font-family: var(--font-display);
-  font-size: 1.6rem;
+  font-stretch: 112%;
+  font-size: 1.35rem;
   font-weight: 800;
+  text-transform: uppercase;
   color: var(--color-cream);
   margin-top: 2.5rem;
   margin-bottom: 1rem;
   line-height: 1.2;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-line);
 }
 .prose-styles h3 {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
   font-weight: 700;
-  color: var(--color-cream);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-acid);
   margin-top: 1.75rem;
   margin-bottom: 0.5rem;
 }
@@ -168,7 +383,7 @@ body::after {
   margin-bottom: 0.85rem;
 }
 .prose-styles a {
-  color: var(--color-mint);
+  color: var(--color-acid);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -178,6 +393,8 @@ body::after {
 }
 .prose-styles h2:first-child {
   margin-top: 0;
+  border-top: 0;
+  padding-top: 0;
 }
 
 /* === Scrollbar === */
@@ -188,9 +405,8 @@ body::after {
   background: var(--color-base);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-violet);
-  border-radius: 6px;
+  background: #2a2633;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary);
+  background: var(--color-acid);
 }

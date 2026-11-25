@@ -1,82 +1,77 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import Container from "@/components/layout/Container";
+import CornerMarks from "@/components/retro/CornerMarks";
 
-export default function HeroSection() {
-  const t = useTranslations("home.hero");
+// Feste Höhen/Verzögerungen statt Math.random: identisches HTML bei jedem
+// Rendern, damit die Seite sauber gecacht werden kann.
+const EQ = Array.from({ length: 40 }, (_, i) => ({
+  h: 30 + ((i * 37) % 70),
+  d: ((i * 53) % 100) / 100,
+}));
+
+export default async function HeroSection() {
+  const t = await getTranslations("home.hero");
 
   return (
-    <section className="relative min-h-[100svh] flex items-center overflow-hidden grain">
-      {/* Hintergrund: Film-Rave-Dunkelheit + Brand-Glows */}
-      <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_-10%,#3b1576_0%,#1a0b2e_45%,#0c0518_100%)]" />
-      <div className="glow-orb left-[-10%] top-[10%] size-[40vw] bg-primary/40" />
-      <div className="glow-orb right-[-5%] bottom-[5%] size-[34vw] bg-mint/25" />
-      <div className="glow-orb left-[30%] top-[40%] size-[28vw] bg-violet/40" />
+    <section className="scanlines relative min-h-[100svh] overflow-hidden bg-background">
+      {/* Raster, Licht, Retro-Boden */}
+      <div className="absolute inset-0 bg-grid" />
+      <div className="glow-orb left-[-12%] top-[-8%] size-[48vw] bg-violet/60" />
+      <div className="glow-orb right-[-10%] top-[28%] size-[38vw] bg-primary/45" />
+      <div className="retro-floor" />
 
-      <Container className="relative z-10 py-28 text-center">
-        <motion.span
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-block rounded-full border border-white/15 bg-white/5 px-4 py-1.5 font-display text-xs font-bold uppercase tracking-[0.25em] text-mint backdrop-blur"
-        >
-          {t("eyebrow")}
-        </motion.span>
+      <Container className="relative z-10 flex min-h-[100svh] flex-col justify-between pt-24 pb-8 md:pt-28">
+        {/* Statuszeile */}
+        <div className="label-mono flex items-center justify-between gap-4 border-b border-line pb-3 text-cream/60">
+          <span className="flex items-center gap-2">
+            <span className="animate-blink inline-block size-2 rounded-full bg-primary" />
+            REC — {t("status")}
+          </span>
+          <span className="hidden md:inline">VAYVE/SYS v26.11</span>
+          <span className="hidden sm:inline">HH 53.55°N 9.99°E</span>
+        </div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.08 }}
-          className="mt-7 font-display text-6xl sm:text-7xl md:text-8xl font-extrabold leading-[0.92] tracking-[-0.03em]"
-        >
-          <span className="block text-cream">{t("line1")}</span>
-          <span className="block text-cream">{t("line2")}</span>
-          <span className="block text-gradient">{t("line3")}</span>
-        </motion.h1>
+        {/* Headline */}
+        <div className="relative py-12 md:py-16">
+          <p className="label-mono mb-6 inline-flex items-center gap-3 border border-acid/60 px-3 py-1.5 text-acid">
+            ▸ {t("eyebrow")}
+          </p>
+          <h1 className="font-display text-[clamp(2.7rem,10.5vw,9.5rem)] leading-[0.86]">
+            <span className="block text-cream">{t("line1")}</span>
+            <span className="text-outline block">{t("line2")}</span>
+            <span className="text-rgb animate-glitch block text-acid">{t("line3")}</span>
+          </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.18 }}
-          className="mx-auto mt-7 max-w-xl text-lg text-cream/70"
-        >
-          {t("subtitle")}
-        </motion.p>
+          <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+            <p className="max-w-md text-lg leading-relaxed text-cream/75">{t("subtitle")}</p>
+            <div className="flex flex-wrap gap-4">
+              <Link href="/events" className="btn-hard btn-acid">
+                {t("ctaEvents")} →
+              </Link>
+              <Link href="/tickets" className="btn-hard btn-ghost">
+                {t("ctaTickets")}
+              </Link>
+            </div>
+          </div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.28 }}
-          className="mt-9 flex flex-wrap items-center justify-center gap-4"
-        >
-          <Link
-            href="/events"
-            className="rounded-full bg-primary px-7 py-3.5 font-display font-bold text-white hover:shadow-[var(--shadow-glow-pink)] transition-all"
-          >
-            {t("ctaEvents")}
-          </Link>
-          <Link
-            href="/tickets"
-            className="rounded-full border border-white/25 px-7 py-3.5 font-display font-bold text-cream hover:border-mint hover:text-mint transition-all"
-          >
-            {t("ctaTickets")}
-          </Link>
-        </motion.div>
+        {/* Equalizer + Scroll */}
+        <div className="relative flex items-end justify-between gap-6 border-t border-line pt-4">
+          <div className="flex h-10 items-end gap-[3px]" aria-hidden>
+            {EQ.map((b, i) => (
+              <span
+                key={i}
+                className={`eq-bar w-[3px] bg-acid/80 ${i > 18 ? "hidden sm:block" : ""}`}
+                style={{ height: `${b.h}%`, animationDelay: `-${b.d}s` }}
+              />
+            ))}
+          </div>
+          <span className="label-mono hidden text-cream/50 md:inline">128 BPM — 4/4</span>
+          <span className="label-mono text-cream/60">↓ {t("scroll")}</span>
+        </div>
       </Container>
-
-      {/* Scroll-Hinweis */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10">
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity }}
-          className="font-display text-[10px] uppercase tracking-[0.3em] text-cream/40"
-        >
-          {t("scroll")}
-        </motion.div>
-      </div>
+      <CornerMarks className="m-3 md:m-5" size="size-4" />
     </section>
   );
 }

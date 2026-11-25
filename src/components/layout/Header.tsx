@@ -1,10 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { navLinks } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import Logo from "@/components/brand/Logo";
@@ -12,15 +11,22 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import MobileNav from "./MobileNav";
 import Container from "./Container";
 
+function isActive(pathname: string, href: string): boolean {
+  return href === "/" ? pathname === "/" : pathname.startsWith(href);
+}
+
 export default function Header() {
   const t = useTranslations("nav");
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { scrollY } = useScroll();
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    setScrolled(latest > 40);
-  });
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
@@ -31,50 +37,56 @@ export default function Header() {
 
   return (
     <>
-      <motion.header
+      <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300",
           scrolled
-            ? "bg-[#100722]/85 backdrop-blur-lg border-b border-white/10"
-            : "bg-transparent",
+            ? "border-line bg-background/90 backdrop-blur-md"
+            : "border-transparent bg-transparent",
         )}
       >
-        <Container className="flex items-center justify-between h-16 md:h-20">
-          <Link href="/" className="shrink-0">
-            <Logo className="h-8 md:h-10" />
+        <Container className="flex h-16 items-center justify-between gap-6 md:h-[72px]">
+          <Link href="/" className="shrink-0" aria-label="VAYVE">
+            <Logo className="h-8 md:h-9" />
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.key}
-                href={link.href}
-                className="text-sm font-display font-semibold text-cream/70 hover:text-cream transition-colors"
-              >
-                {t(link.key)}
-              </Link>
-            ))}
+          <nav className="hidden items-center lg:flex">
+            {navLinks.map((link, i) => {
+              const active = isActive(pathname, link.href);
+              return (
+                <Link
+                  key={link.key}
+                  href={link.href}
+                  className={cn(
+                    "label-mono group flex items-center gap-1.5 px-3.5 py-2 transition-colors",
+                    active ? "text-acid" : "text-cream/65 hover:text-cream",
+                  )}
+                >
+                  <span className={cn("text-[0.6rem]", active ? "text-acid" : "text-cream/30")}>
+                    0{i + 1}
+                  </span>
+                  {t(link.key)}
+                </Link>
+              );
+            })}
           </nav>
 
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden items-center gap-4 lg:flex">
             <LanguageSwitcher />
-            <Link
-              href="/tickets"
-              className="rounded-full bg-primary px-5 py-2.5 text-sm font-display font-bold text-white hover:shadow-[var(--shadow-glow-pink)] transition-all"
-            >
-              {t("tickets")}
+            <Link href="/tickets" className="btn-hard btn-acid !px-5 !py-2.5">
+              {t("tickets")} →
             </Link>
           </div>
 
           <button
             onClick={() => setMobileOpen(true)}
-            className="md:hidden inline-flex size-11 items-center justify-center text-cream/80 hover:text-cream transition-colors cursor-pointer"
+            className="inline-flex size-11 cursor-pointer items-center justify-center border border-line text-cream transition-colors hover:border-acid hover:text-acid lg:hidden"
             aria-label="Menü öffnen"
           >
-            <Menu size={26} />
+            <Menu size={22} />
           </button>
         </Container>
-      </motion.header>
+      </header>
 
       <MobileNav isOpen={mobileOpen} onClose={() => setMobileOpen(false)} />
     </>

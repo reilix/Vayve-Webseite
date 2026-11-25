@@ -1,17 +1,28 @@
-import { Syne, Inter } from "next/font/google";
+import { Archivo, Space_Grotesk, Space_Mono } from "next/font/google";
 
-/** Display / Headlines — charaktervolle Grotesk, passt zur Bubble-Brand */
-export const syne = Syne({
+/**
+ * Display — Archivo mit Breiten-Achse. In Extended (font-stretch 125 %) und
+ * Black wirkt sie wie die Typo auf 90s-Rave-Flyern.
+ */
+export const archivo = Archivo({
   subsets: ["latin"],
-  variable: "--font-syne",
-  weight: ["600", "700", "800"],
+  variable: "--font-archivo",
+  axes: ["wdth"],
   display: "swap",
 });
 
-/** Body / UI */
-export const inter = Inter({
+/** Body / UI — technische Grotesk */
+export const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-inter",
-  weight: ["400", "500", "600", "700"],
+  variable: "--font-grotesk",
+  weight: ["400", "500", "700"],
+  display: "swap",
+});
+
+/** Labels, Ticker, Metadaten — Retro-Monospace */
+export const spaceMono = Space_Mono({
+  subsets: ["latin"],
+  variable: "--font-spacemono",
+  weight: ["400", "700"],
   display: "swap",
 });

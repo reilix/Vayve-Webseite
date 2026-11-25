@@ -6,9 +6,10 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FbclidCapture from "@/components/tracking/FbclidCapture";
 
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
+// Bewusst kein generateStaticParams hier: Es würde jede Unterseite beim Build
+// vorrendern — auch die mit Datenbank-Inhalten, die dann die Seed-Daten der
+// Build-DB zeigen würden. Statische Seiten holen es sich aus
+// src/i18n/static-params.ts, DB-Seiten rendern beim ersten Aufruf (ISR).
 
 export default async function LocaleLayout({
   children,
