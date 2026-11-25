@@ -13,7 +13,7 @@ export default async function VibeSection() {
         <div className="lg:col-span-4">
           <p className="label-mono text-acid">[03] — {t("eyebrow")}</p>
           <p className="label-mono mt-6 hidden max-w-[16rem] leading-relaxed text-cream/40 lg:block">
-            Hard House / Trance / Bounce / House — Open Air / Club / Run
+            Hard House / Hard Groove / Trance / Bounce — Open Air / Club / Run
           </p>
         </div>
         <div className="lg:col-span-8">

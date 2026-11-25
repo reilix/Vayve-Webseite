@@ -67,7 +67,7 @@ export default async function HeroSection() {
               />
             ))}
           </div>
-          <span className="label-mono hidden text-cream/50 md:inline">128 BPM — 4/4</span>
+          <span className="label-mono hidden text-cream/50 md:inline">140–165 BPM — 4/4</span>
           <span className="label-mono text-cream/60">↓ {t("scroll")}</span>
         </div>
       </Container>
