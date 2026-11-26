@@ -102,6 +102,12 @@ export default function Footer() {
             <Link href="/agb" className="transition-colors hover:text-cream">
               AGB
             </Link>
+            <span>
+              {t("credit")}:{" "}
+              <a href="https://nios.digital/" className="transition-colors hover:text-cream">
+                nios.digital
+              </a>
+            </span>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="cursor-pointer border border-line px-3 py-1.5 transition-colors hover:border-acid hover:text-acid"
