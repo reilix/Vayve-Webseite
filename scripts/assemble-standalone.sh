@@ -22,6 +22,8 @@ cp -a .next/standalone/.next "$OUT/"
 # Statische Dateien legt Next bewusst nicht ins Standalone-Paket.
 cp -a .next/static "$OUT/.next/static"
 cp -a public "$OUT/public"
+# Startpunkt mit Wächter gegen hängende alte Instanzen (siehe scripts/start.mjs).
+cp scripts/start.mjs "$OUT/start.mjs"
 
 # Eigene package.json: keine Abhängigkeiten (alles liegt schon in
 # node_modules), kein Build. SiteGround führt nur noch `npm start` aus.
@@ -29,6 +31,8 @@ cp -a public "$OUT/public"
 # bei jedem Start erst als CommonJS und dann erneut (.next/ bringt eine eigene
 # package.json mit "commonjs" mit und ist davon nicht betroffen).
 # NEXT_TELEMETRY_DISABLED: keine Telemetrie-Aufrufe aus dem Server-Prozess.
+# exec: Node ersetzt die Shell und bekommt SIGTERM beim Deploy direkt. Ohne
+# exec starb nur die Shell, Node lief verwaist weiter (Ticket 5178240).
 # HOSTNAME=0.0.0.0 ist Pflicht: Steht dort eine feste Adresse, die nicht zur
 # angefragten Domain passt, behandelt der Standalone-Server die Sprach-Rewrites
 # von next-intl als externe Weiterleitung, und `/` leitet endlos auf `/` um.
@@ -39,7 +43,7 @@ cat > "$OUT/package.json" <<'JSON'
   "type": "module",
   "scripts": {
     "build": "rm -rf node_modules && cp -a vendor_modules node_modules && echo 'vorgebaut von GitHub Actions'",
-    "start": "[ -f node_modules/next/package.json ] || { rm -rf node_modules && cp -a vendor_modules node_modules; }; HOSTNAME=0.0.0.0 NEXT_TELEMETRY_DISABLED=1 node server.js"
+    "start": "[ -f node_modules/next/package.json ] || { rm -rf node_modules && cp -a vendor_modules node_modules; }; HOSTNAME=0.0.0.0 NEXT_TELEMETRY_DISABLED=1 exec node start.mjs"
   },
   "engines": { "node": ">=22.13" }
 }
