@@ -1,0 +1,3 @@
+module.exports=[3530,a=>{"use strict";var b=a.i(87924),c=a.i(46271),d=a.i(68114);let e={up:{y:30},down:{y:-30},left:{x:30},right:{x:-30}};a.s(["default",0,function({children:a,direction:f="up",delay:g=0,duration:h=.6,className:i}){let j={hidden:{opacity:0,...e[f]},visible:{opacity:1,x:0,y:0,transition:{duration:h,delay:g,ease:[.25,.1,.25,1]}}};return(0,b.jsx)(c.motion.div,{initial:"hidden",whileInView:"visible",viewport:{once:!0,amount:.2},variants:j,className:(0,d.cn)(i),children:a})}])}];
+
+//# sourceMappingURL=src_components_animation_ScrollReveal_tsx_08c3e65._.js.map

@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[22016,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0pav4g~ezy29u.js","/_next/static/chunks/0eem9crc5s8sp.js"],""]
+3:I[97367,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0pav4g~ezy29u.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"scanlines relative flex min-h-screen items-center justify-center overflow-hidden bg-background px-4","children":[["$","div",null,{"className":"absolute inset-0 bg-grid"}],["$","div",null,{"className":"relative z-10 text-center","children":[["$","p",null,{"className":"label-mono text-acid","children":"[ERR] — Signal lost"}],["$","h1",null,{"className":"text-rgb animate-glitch mt-6 font-display text-[clamp(6rem,22vw,14rem)] leading-none text-cream","children":"404"}],["$","p",null,{"className":"label-mono mt-6 text-cream/60","children":"Seite nicht gefunden / Page not found"}],["$","$L2",null,{"href":"/","className":"btn-hard btn-acid mt-10","children":"← Zur Startseite"}]]}]]}],[["$","script","script-0",{"src":"/_next/static/chunks/0eem9crc5s8sp.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"1cfb44y-LCH8gf_ExyAnx"}
+5:null

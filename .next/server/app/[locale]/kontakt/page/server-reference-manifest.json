@@ -1,0 +1,17 @@
+{
+  "node": {
+    "60c4688d258d4a7551e0dbea0c5bc4547ec7241ff2": {
+      "workers": {
+        "app/[locale]/kontakt/page": {
+          "moduleId": 77463,
+          "async": false,
+          "exportedName": "submitContactAction",
+          "filename": "src/app/[locale]/kontakt/actions.ts"
+        }
+      },
+      "exportedName": "submitContactAction",
+      "filename": "src/app/[locale]/kontakt/actions.ts"
+    }
+  },
+  "edge": {}
+}
